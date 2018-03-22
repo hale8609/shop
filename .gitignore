@@ -3,6 +3,8 @@
 ### Example user template
 
 # IntelliJ project files
+target
+rebel.xml
 .idea
 *.iml
 out

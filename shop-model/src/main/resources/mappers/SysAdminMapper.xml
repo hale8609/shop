@@ -125,4 +125,8 @@
       state = #{state,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
+
+  <select id="selectByUserNameAndPwd" resultMap="BaseResultMap">
+    select <include refid="Base_Column_List"/> from sys_admin where admin_name = #{username} and admin_pwd=#{password}
+  </select>
 </mapper>

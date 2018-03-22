@@ -8,9 +8,4 @@
     <context:component-scan base-package="com.controller" />
     <!-- 开启SpringMVC注解模式 -->
     <mvc:annotation-driven/>
-    <mvc:resources location="/js/" mapping="*"/>
-    <mvc:resources location="/css/" mapping="*"/>
-    <mvc:resources location="/img/" mapping="*"/>
-    <mvc:resources location="/plugins/" mapping="*"/>
-    <mvc:resources location="/**" mapping="*"/>
 </beans>
