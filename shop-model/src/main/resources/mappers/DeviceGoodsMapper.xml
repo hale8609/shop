@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mapper.DeviceGoodsMapper" >
+  <resultMap id="BaseResultMap" type="com.model.DeviceGoods" >
+    <id column="主键" property="主键" jdbcType="INTEGER" />
+    <result column="设备id" property="设备id" jdbcType="INTEGER" />
+    <result column="商品名称" property="商品名称" jdbcType="VARCHAR" />
+    <result column="库存" property="库存" jdbcType="INTEGER" />
+    <result column="销量" property="销量" jdbcType="INTEGER" />
+    <result column="价格" property="价格" jdbcType="DOUBLE" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.model.DeviceGoods" extends="BaseResultMap" >
+    <result column="商品描述" property="商品描述" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    主键, 设备id, 商品名称, 库存, 销量, 价格
+  </sql>
+  <sql id="Blob_Column_List" >
+    商品描述
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from device_goods
+    where 主键 = #{主键,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from device_goods
+    where 主键 = #{主键,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.model.DeviceGoods" >
+    insert into device_goods (主键, 设备id, 商品名称, 
+      库存, 销量, 价格, 商品描述
+      )
+    values (#{主键,jdbcType=INTEGER}, #{设备id,jdbcType=INTEGER}, #{商品名称,jdbcType=VARCHAR}, 
+      #{库存,jdbcType=INTEGER}, #{销量,jdbcType=INTEGER}, #{价格,jdbcType=DOUBLE}, #{商品描述,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.model.DeviceGoods" >
+    insert into device_goods
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="主键 != null" >
+        主键,
+      </if>
+      <if test="设备id != null" >
+        设备id,
+      </if>
+      <if test="商品名称 != null" >
+        商品名称,
+      </if>
+      <if test="库存 != null" >
+        库存,
+      </if>
+      <if test="销量 != null" >
+        销量,
+      </if>
+      <if test="价格 != null" >
+        价格,
+      </if>
+      <if test="商品描述 != null" >
+        商品描述,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="主键 != null" >
+        #{主键,jdbcType=INTEGER},
+      </if>
+      <if test="设备id != null" >
+        #{设备id,jdbcType=INTEGER},
+      </if>
+      <if test="商品名称 != null" >
+        #{商品名称,jdbcType=VARCHAR},
+      </if>
+      <if test="库存 != null" >
+        #{库存,jdbcType=INTEGER},
+      </if>
+      <if test="销量 != null" >
+        #{销量,jdbcType=INTEGER},
+      </if>
+      <if test="价格 != null" >
+        #{价格,jdbcType=DOUBLE},
+      </if>
+      <if test="商品描述 != null" >
+        #{商品描述,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.model.DeviceGoods" >
+    update device_goods
+    <set >
+      <if test="设备id != null" >
+        设备id = #{设备id,jdbcType=INTEGER},
+      </if>
+      <if test="商品名称 != null" >
+        商品名称 = #{商品名称,jdbcType=VARCHAR},
+      </if>
+      <if test="库存 != null" >
+        库存 = #{库存,jdbcType=INTEGER},
+      </if>
+      <if test="销量 != null" >
+        销量 = #{销量,jdbcType=INTEGER},
+      </if>
+      <if test="价格 != null" >
+        价格 = #{价格,jdbcType=DOUBLE},
+      </if>
+      <if test="商品描述 != null" >
+        商品描述 = #{商品描述,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where 主键 = #{主键,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.model.DeviceGoods" >
+    update device_goods
+    set 设备id = #{设备id,jdbcType=INTEGER},
+      商品名称 = #{商品名称,jdbcType=VARCHAR},
+      库存 = #{库存,jdbcType=INTEGER},
+      销量 = #{销量,jdbcType=INTEGER},
+      价格 = #{价格,jdbcType=DOUBLE},
+      商品描述 = #{商品描述,jdbcType=LONGVARCHAR}
+    where 主键 = #{主键,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.model.DeviceGoods" >
+    update device_goods
+    set 设备id = #{设备id,jdbcType=INTEGER},
+      商品名称 = #{商品名称,jdbcType=VARCHAR},
+      库存 = #{库存,jdbcType=INTEGER},
+      销量 = #{销量,jdbcType=INTEGER},
+      价格 = #{价格,jdbcType=DOUBLE}
+    where 主键 = #{主键,jdbcType=INTEGER}
+  </update>
+</mapper>

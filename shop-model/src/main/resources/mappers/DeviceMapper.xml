@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mapper.DeviceMapper" >
+  <resultMap id="BaseResultMap" type="com.model.Device" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="device_name" property="deviceName" jdbcType="VARCHAR" />
+    <result column="device_address" property="deviceAddress" jdbcType="VARCHAR" />
+    <result column="device_lng" property="deviceLng" jdbcType="VARCHAR" />
+    <result column="device_lat" property="deviceLat" jdbcType="VARCHAR" />
+    <result column="produce_date" property="produceDate" jdbcType="TIMESTAMP" />
+    <result column="use_date" property="useDate" jdbcType="TIMESTAMP" />
+    <result column="linkman" property="linkman" jdbcType="VARCHAR" />
+    <result column="phone" property="phone" jdbcType="VARCHAR" />
+    <result column="state" property="state" jdbcType="INTEGER" />
+    <result column="admin_id" property="adminId" jdbcType="INTEGER" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.model.DeviceWithBLOBs" extends="BaseResultMap" >
+    <result column="device_describe" property="deviceDescribe" jdbcType="LONGVARCHAR" />
+    <result column="remarks" property="remarks" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, device_name, device_address, device_lng, device_lat, produce_date, use_date, 
+    linkman, phone, state, admin_id
+  </sql>
+  <sql id="Blob_Column_List" >
+    device_describe, remarks
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from device
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from device
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.model.DeviceWithBLOBs" >
+    insert into device (id, device_name, device_address, 
+      device_lng, device_lat, produce_date, 
+      use_date, linkman, phone, 
+      state, admin_id, device_describe, 
+      remarks)
+    values (#{id,jdbcType=INTEGER}, #{deviceName,jdbcType=VARCHAR}, #{deviceAddress,jdbcType=VARCHAR}, 
+      #{deviceLng,jdbcType=VARCHAR}, #{deviceLat,jdbcType=VARCHAR}, #{produceDate,jdbcType=TIMESTAMP}, 
+      #{useDate,jdbcType=TIMESTAMP}, #{linkman,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, 
+      #{state,jdbcType=INTEGER}, #{adminId,jdbcType=INTEGER}, #{deviceDescribe,jdbcType=LONGVARCHAR}, 
+      #{remarks,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.model.DeviceWithBLOBs" >
+    insert into device
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="deviceName != null" >
+        device_name,
+      </if>
+      <if test="deviceAddress != null" >
+        device_address,
+      </if>
+      <if test="deviceLng != null" >
+        device_lng,
+      </if>
+      <if test="deviceLat != null" >
+        device_lat,
+      </if>
+      <if test="produceDate != null" >
+        produce_date,
+      </if>
+      <if test="useDate != null" >
+        use_date,
+      </if>
+      <if test="linkman != null" >
+        linkman,
+      </if>
+      <if test="phone != null" >
+        phone,
+      </if>
+      <if test="state != null" >
+        state,
+      </if>
+      <if test="adminId != null" >
+        admin_id,
+      </if>
+      <if test="deviceDescribe != null" >
+        device_describe,
+      </if>
+      <if test="remarks != null" >
+        remarks,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="deviceName != null" >
+        #{deviceName,jdbcType=VARCHAR},
+      </if>
+      <if test="deviceAddress != null" >
+        #{deviceAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="deviceLng != null" >
+        #{deviceLng,jdbcType=VARCHAR},
+      </if>
+      <if test="deviceLat != null" >
+        #{deviceLat,jdbcType=VARCHAR},
+      </if>
+      <if test="produceDate != null" >
+        #{produceDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="useDate != null" >
+        #{useDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="linkman != null" >
+        #{linkman,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null" >
+        #{state,jdbcType=INTEGER},
+      </if>
+      <if test="adminId != null" >
+        #{adminId,jdbcType=INTEGER},
+      </if>
+      <if test="deviceDescribe != null" >
+        #{deviceDescribe,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="remarks != null" >
+        #{remarks,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.model.DeviceWithBLOBs" >
+    update device
+    <set >
+      <if test="deviceName != null" >
+        device_name = #{deviceName,jdbcType=VARCHAR},
+      </if>
+      <if test="deviceAddress != null" >
+        device_address = #{deviceAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="deviceLng != null" >
+        device_lng = #{deviceLng,jdbcType=VARCHAR},
+      </if>
+      <if test="deviceLat != null" >
+        device_lat = #{deviceLat,jdbcType=VARCHAR},
+      </if>
+      <if test="produceDate != null" >
+        produce_date = #{produceDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="useDate != null" >
+        use_date = #{useDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="linkman != null" >
+        linkman = #{linkman,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null" >
+        state = #{state,jdbcType=INTEGER},
+      </if>
+      <if test="adminId != null" >
+        admin_id = #{adminId,jdbcType=INTEGER},
+      </if>
+      <if test="deviceDescribe != null" >
+        device_describe = #{deviceDescribe,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="remarks != null" >
+        remarks = #{remarks,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.model.DeviceWithBLOBs" >
+    update device
+    set device_name = #{deviceName,jdbcType=VARCHAR},
+      device_address = #{deviceAddress,jdbcType=VARCHAR},
+      device_lng = #{deviceLng,jdbcType=VARCHAR},
+      device_lat = #{deviceLat,jdbcType=VARCHAR},
+      produce_date = #{produceDate,jdbcType=TIMESTAMP},
+      use_date = #{useDate,jdbcType=TIMESTAMP},
+      linkman = #{linkman,jdbcType=VARCHAR},
+      phone = #{phone,jdbcType=VARCHAR},
+      state = #{state,jdbcType=INTEGER},
+      admin_id = #{adminId,jdbcType=INTEGER},
+      device_describe = #{deviceDescribe,jdbcType=LONGVARCHAR},
+      remarks = #{remarks,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.model.Device" >
+    update device
+    set device_name = #{deviceName,jdbcType=VARCHAR},
+      device_address = #{deviceAddress,jdbcType=VARCHAR},
+      device_lng = #{deviceLng,jdbcType=VARCHAR},
+      device_lat = #{deviceLat,jdbcType=VARCHAR},
+      produce_date = #{produceDate,jdbcType=TIMESTAMP},
+      use_date = #{useDate,jdbcType=TIMESTAMP},
+      linkman = #{linkman,jdbcType=VARCHAR},
+      phone = #{phone,jdbcType=VARCHAR},
+      state = #{state,jdbcType=INTEGER},
+      admin_id = #{adminId,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

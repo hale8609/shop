@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+    <head>
+  		<title>首页</title>
+	    <link rel="stylesheet" type="text/css" href="../lib/bootstrap/css/bootstrap.min.css"/>
+	    <link rel="stylesheet" type="text/css" href="../lib/font-awesome/css/font-awesome.min.css"/>
+	    <link rel="stylesheet" type="text/css" href="../lib/Ionicons/css/ionicons.min.css"/>
+	    <link rel="stylesheet" type="text/css" href="../lib/AdminLTE/css/AdminLTE.min.css"/>
+	    <link rel="stylesheet" type="text/css" href="../lib/AdminLTE/css/skins/skin-blue.min.css"/>
+    </head>
+    <body class="hold-transition skin-blue sidebar-mini">
+    	<div class="warpper" id="content">
+    		<header class="main-header">
+			    <a href="index2.html" class="logo">
+			      <span class="logo-mini"><b>A</b>LT</span>
+			      <span class="logo-lg"><b>Admin</b>LTE</span>
+			    </a>
+			    <nav class="navbar navbar-static-top" role="navigation">
+			    	<a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
+			       		<span class="sr-only">Toggle navigation</span>
+			        </a>
+
+			        <div class="navbar-custom-menu">
+        				<ul class="nav navbar-nav">
+
+        					<li class="dropdown user user-menu">
+					            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+					              <span class="hidden-xs">Alexander Pierce</span>
+					            </a>
+					            <ul class="dropdown-menu">
+					              <li class="user-header">
+					                <p>
+					                  Alexander Pierce - Web Developer
+					                  <small>Member since Nov. 2012</small>
+					                </p>
+					              </li>
+					              <!-- Menu Body -->
+					              <li class="user-body">
+					                <div class="row">
+					                  <div class="col-xs-4 text-center">
+					                    <a href="#">Followers</a>
+					                  </div>
+					                  <div class="col-xs-4 text-center">
+					                    <a href="#">Sales</a>
+					                  </div>
+					                  <div class="col-xs-4 text-center">
+					                    <a href="#">Friends</a>
+					                  </div>
+					                </div>
+					                <!-- /.row -->
+					              </li>
+					              <!-- Menu Footer-->
+					              <li class="user-footer">
+					                <div class="pull-left">
+					                  <a href="#" class="btn btn-default btn-flat">Profile</a>
+					                </div>
+					                <div class="pull-right">
+					                  <a href="#" class="btn btn-default btn-flat">Sign out</a>
+					                </div>
+					              </li>
+					            </ul>
+					          </li>
+
+        				</ul>
+        			</div>
+		    	<nav>
+    		</header>
+    		 <!-- Left side column. contains the logo and sidebar -->
+			  <aside class="main-sidebar">
+			    <!-- sidebar: style can be found in sidebar.less -->
+			    <section class="sidebar">
+			      <!-- Sidebar Menu -->
+
+			      <ul class="sidebar-menu" data-widget="tree">
+			       	<li class="header">Menu</li>
+			       	<li class="treeview" v-for="menu in menus">
+			          <a href="#">
+			            <i :class="menu.icon"></i> <span>{{menu.name}}</span>
+			            <span class="pull-right-container">
+			              <i class="fa fa-angle-left pull-right"></i>
+			            </span>
+			          </a>
+			          <ul class="treeview-menu">
+			            <li v-for="(child,index) in menu.childs" @click="toPage($event,index)"><a><i class="fa fa-circle-o"></i>{{child.name}}</a>
+			            </li>
+			          </ul>
+			        </li>
+			      </ul>
+			      <!-- /.sidebar-menu -->
+			    </section>
+			    <!-- /.sidebar -->
+			  </aside>
+
+			  <div class="content-wrapper">
+			    <section class="content-header">
+			      <h1>{{title}}</h1>
+			      <ol class="breadcrumb">
+			        <li><a href="#"><i class="fa fa-dashboard"></i>首页</a></li>
+			        <li><a href="#">{{parent}}</a></li>
+			        <li class="active">{{child}}</li>
+			      </ol>
+			    </section>
+			  </div>			  
+    	</div>
+    </body>
+    <script src="../lib/vue/vue.min.js"></script>
+    <script src="../lib/jquery/jquery.min.js"></script>
+	<script src="../lib/bootstrap/js/bootstrap.min.js"></script>
+	<script src="../lib/AdminLTE/js/adminlte.min.js"></script>
+	<script type="text/javascript">
+		var data = [
+		{"icon":"fa fa-gear","name":"系统","childs":[{"name":"管理员"},{"name":"角色"}]},
+		{"icon":"fa fa-user","name":"用户","childs":[{"name":"用户管理"}]}
+		];
+		new Vue({
+		    el:'#content',
+		    data: {
+		        menus:data,
+		        title:"测试",
+		        parent:"测试",
+		        child:"测试",
+		        ins:0
+		    },
+		    methods:{
+		    	toPage:function(event,index){
+		    		 $("#content").find('.main-sidebar').find('li').removeClass('active');
+			　　　　　　　　$(event.currentTarget).addClass('active');
+		    	}
+		    }
+		});
+	</script>
+</html>
