@@ -17,7 +17,7 @@ public class LoginController {
     @Autowired
     private SysAdminService sysAdminService;
 
-    @RequestMapping("/test")
+    @RequestMapping("/login")
     @ResponseBody
     public Object login(HttpSession session, String username, String password){
         HttpResult httpResult = new HttpResult();
