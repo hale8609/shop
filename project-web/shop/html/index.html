@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
+    	<meta charset="UTF-8">
   		<title>首页</title>
 	    <link rel="stylesheet" type="text/css" href="../lib/bootstrap/css/bootstrap.min.css"/>
 	    <link rel="stylesheet" type="text/css" href="../lib/font-awesome/css/font-awesome.min.css"/>
@@ -93,12 +94,15 @@
 
 			  <div class="content-wrapper">
 			    <section class="content-header">
-			      <h1>{{title}}</h1>
+			      <h1>{{child}}</h1>
 			      <ol class="breadcrumb">
 			        <li><a href="#"><i class="fa fa-dashboard"></i>首页</a></li>
 			        <li><a href="#">{{parent}}</a></li>
 			        <li class="active">{{child}}</li>
 			      </ol>
+			    </section>
+			    <section class="content">
+			    	<iframe src="login.html" frameborder="0" scrolling="no"></iframe>
 			    </section>
 			  </div>			  
     	</div>
@@ -107,26 +111,5 @@
     <script src="../lib/jquery/jquery.min.js"></script>
 	<script src="../lib/bootstrap/js/bootstrap.min.js"></script>
 	<script src="../lib/AdminLTE/js/adminlte.min.js"></script>
-	<script type="text/javascript">
-		var data = [
-		{"icon":"fa fa-gear","name":"系统","childs":[{"name":"管理员"},{"name":"角色"}]},
-		{"icon":"fa fa-user","name":"用户","childs":[{"name":"用户管理"}]}
-		];
-		new Vue({
-		    el:'#content',
-		    data: {
-		        menus:data,
-		        title:"测试",
-		        parent:"测试",
-		        child:"测试",
-		        ins:0
-		    },
-		    methods:{
-		    	toPage:function(event,index){
-		    		 $("#content").find('.main-sidebar').find('li').removeClass('active');
-			　　　　　　　　$(event.currentTarget).addClass('active');
-		    	}
-		    }
-		});
-	</script>
+	<script src="../js/index.js"></script>
 </html>
