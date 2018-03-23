@@ -19,15 +19,9 @@ var data = [
 		    }
 		});
 function setIframeHeight(iframe) {
-if (iframe) {
-var iframeWin = iframe.contentWindow || iframe.contentDocument.parentWindow;
-if (iframeWin.document.body) {
-iframe.height = iframeWin.document.documentElement.scrollHeight || iframeWin.document.body.scrollHeight;
+$(iframe).height(document.body.clientHeight-$("nav").outerHeight()-$(".content-header").outerHeight()-8);
+$(iframe).css("width","100%");
 }
-}
-};
-
 window.onload = function () {
-	console.log($("iframe")[0]);
 setIframeHeight($("iframe")[0]);
 };
