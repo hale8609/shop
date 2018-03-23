@@ -90,4 +90,9 @@
       create_time = #{createTime,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=INTEGER}
   </update>
+
+  <select id="selectMenusByAdminId" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+    select * from vi_admin_menu where admin_id = #{adminId};
+  </select>
+
 </mapper>

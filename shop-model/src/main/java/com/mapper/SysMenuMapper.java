@@ -2,6 +2,8 @@ package com.mapper;
 
 import com.model.SysMenu;
 
+import java.util.List;
+
 public interface SysMenuMapper {
     /**
      *
@@ -38,4 +40,6 @@ public interface SysMenuMapper {
      * @mbggenerated 2018-03-22
      */
     int updateByPrimaryKey(SysMenu record);
+
+    List<SysMenu> selectMenusByAdminId(int adminId);
 }
