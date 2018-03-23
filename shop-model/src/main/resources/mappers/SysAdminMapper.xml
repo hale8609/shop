@@ -1,30 +1,108 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.mapper.SysAdminMapper" >
-  <resultMap id="BaseResultMap" type="com.model.SysAdmin" >
-    <id column="id" property="id" jdbcType="INTEGER" />
-    <result column="admin_name" property="adminName" jdbcType="VARCHAR" />
-    <result column="admin_pwd" property="adminPwd" jdbcType="VARCHAR" />
-    <result column="nick" property="nick" jdbcType="VARCHAR" />
-    <result column="phone" property="phone" jdbcType="INTEGER" />
-    <result column="if_disable" property="ifDisable" jdbcType="INTEGER" />
-    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
-    <result column="state" property="state" jdbcType="INTEGER" />
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mapper.SysAdminMapper">
+  <resultMap id="BaseResultMap" type="com.model.SysAdmin">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="admin_name" jdbcType="VARCHAR" property="adminName" />
+    <result column="admin_pwd" jdbcType="VARCHAR" property="adminPwd" />
+    <result column="nick" jdbcType="VARCHAR" property="nick" />
+    <result column="phone" jdbcType="INTEGER" property="phone" />
+    <result column="if_disable" jdbcType="INTEGER" property="ifDisable" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="state" jdbcType="INTEGER" property="state" />
   </resultMap>
-  <sql id="Base_Column_List" >
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
     id, admin_name, admin_pwd, nick, phone, if_disable, create_time, state
   </sql>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+  <select id="selectByExample" parameterType="com.model.SysAdminExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from sys_admin
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
     from sys_admin
     where id = #{id,jdbcType=INTEGER}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from sys_admin
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.model.SysAdmin" >
+  <delete id="deleteByExample" parameterType="com.model.SysAdminExample">
+    delete from sys_admin
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.model.SysAdmin">
     insert into sys_admin (id, admin_name, admin_pwd, 
       nick, phone, if_disable, 
       create_time, state)
@@ -32,89 +110,513 @@
       #{nick,jdbcType=VARCHAR}, #{phone,jdbcType=INTEGER}, #{ifDisable,jdbcType=INTEGER}, 
       #{createTime,jdbcType=TIMESTAMP}, #{state,jdbcType=INTEGER})
   </insert>
-  <insert id="insertSelective" parameterType="com.model.SysAdmin" >
+  <insert id="insertSelective" parameterType="com.model.SysAdmin">
     insert into sys_admin
-    <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
         id,
       </if>
-      <if test="adminName != null" >
+      <if test="adminName != null">
         admin_name,
       </if>
-      <if test="adminPwd != null" >
+      <if test="adminPwd != null">
         admin_pwd,
       </if>
-      <if test="nick != null" >
+      <if test="nick != null">
         nick,
       </if>
-      <if test="phone != null" >
+      <if test="phone != null">
         phone,
       </if>
-      <if test="ifDisable != null" >
+      <if test="ifDisable != null">
         if_disable,
       </if>
-      <if test="createTime != null" >
+      <if test="createTime != null">
         create_time,
       </if>
-      <if test="state != null" >
+      <if test="state != null">
         state,
       </if>
     </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
         #{id,jdbcType=INTEGER},
       </if>
-      <if test="adminName != null" >
+      <if test="adminName != null">
         #{adminName,jdbcType=VARCHAR},
       </if>
-      <if test="adminPwd != null" >
+      <if test="adminPwd != null">
         #{adminPwd,jdbcType=VARCHAR},
       </if>
-      <if test="nick != null" >
+      <if test="nick != null">
         #{nick,jdbcType=VARCHAR},
       </if>
-      <if test="phone != null" >
+      <if test="phone != null">
         #{phone,jdbcType=INTEGER},
       </if>
-      <if test="ifDisable != null" >
+      <if test="ifDisable != null">
         #{ifDisable,jdbcType=INTEGER},
       </if>
-      <if test="createTime != null" >
+      <if test="createTime != null">
         #{createTime,jdbcType=TIMESTAMP},
       </if>
-      <if test="state != null" >
+      <if test="state != null">
         #{state,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.model.SysAdmin" >
+  <select id="countByExample" parameterType="com.model.SysAdminExample" resultType="java.lang.Integer">
+    select count(*) from sys_admin
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
     update sys_admin
-    <set >
-      <if test="adminName != null" >
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.adminName != null">
+        admin_name = #{record.adminName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.adminPwd != null">
+        admin_pwd = #{record.adminPwd,jdbcType=VARCHAR},
+      </if>
+      <if test="record.nick != null">
+        nick = #{record.nick,jdbcType=VARCHAR},
+      </if>
+      <if test="record.phone != null">
+        phone = #{record.phone,jdbcType=INTEGER},
+      </if>
+      <if test="record.ifDisable != null">
+        if_disable = #{record.ifDisable,jdbcType=INTEGER},
+      </if>
+      <if test="record.createTime != null">
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.state != null">
+        state = #{record.state,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update sys_admin
+    set id = #{record.id,jdbcType=INTEGER},
+      admin_name = #{record.adminName,jdbcType=VARCHAR},
+      admin_pwd = #{record.adminPwd,jdbcType=VARCHAR},
+      nick = #{record.nick,jdbcType=VARCHAR},
+      phone = #{record.phone,jdbcType=INTEGER},
+      if_disable = #{record.ifDisable,jdbcType=INTEGER},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      state = #{record.state,jdbcType=INTEGER}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.model.SysAdmin">
+    update sys_admin
+    <set>
+      <if test="adminName != null">
         admin_name = #{adminName,jdbcType=VARCHAR},
       </if>
-      <if test="adminPwd != null" >
+      <if test="adminPwd != null">
         admin_pwd = #{adminPwd,jdbcType=VARCHAR},
       </if>
-      <if test="nick != null" >
+      <if test="nick != null">
         nick = #{nick,jdbcType=VARCHAR},
       </if>
-      <if test="phone != null" >
+      <if test="phone != null">
         phone = #{phone,jdbcType=INTEGER},
       </if>
-      <if test="ifDisable != null" >
+      <if test="ifDisable != null">
         if_disable = #{ifDisable,jdbcType=INTEGER},
       </if>
-      <if test="createTime != null" >
+      <if test="createTime != null">
         create_time = #{createTime,jdbcType=TIMESTAMP},
       </if>
-      <if test="state != null" >
+      <if test="state != null">
         state = #{state,jdbcType=INTEGER},
       </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.model.SysAdmin" >
+  <update id="updateByPrimaryKey" parameterType="com.model.SysAdmin">
+    update sys_admin
+    set admin_name = #{adminName,jdbcType=VARCHAR},
+      admin_pwd = #{adminPwd,jdbcType=VARCHAR},
+      nick = #{nick,jdbcType=VARCHAR},
+      phone = #{phone,jdbcType=INTEGER},
+      if_disable = #{ifDisable,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      state = #{state,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <resultMap id="BaseResultMap" type="com.model.SysAdmin">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="admin_name" jdbcType="VARCHAR" property="adminName" />
+    <result column="admin_pwd" jdbcType="VARCHAR" property="adminPwd" />
+    <result column="nick" jdbcType="VARCHAR" property="nick" />
+    <result column="phone" jdbcType="INTEGER" property="phone" />
+    <result column="if_disable" jdbcType="INTEGER" property="ifDisable" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="state" jdbcType="INTEGER" property="state" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, admin_name, admin_pwd, nick, phone, if_disable, create_time, state
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sys_admin
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from sys_admin
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.model.SysAdmin">
+    insert into sys_admin (id, admin_name, admin_pwd, 
+      nick, phone, if_disable, 
+      create_time, state)
+    values (#{id,jdbcType=INTEGER}, #{adminName,jdbcType=VARCHAR}, #{adminPwd,jdbcType=VARCHAR}, 
+      #{nick,jdbcType=VARCHAR}, #{phone,jdbcType=INTEGER}, #{ifDisable,jdbcType=INTEGER}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{state,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.model.SysAdmin">
+    insert into sys_admin
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="adminName != null">
+        admin_name,
+      </if>
+      <if test="adminPwd != null">
+        admin_pwd,
+      </if>
+      <if test="nick != null">
+        nick,
+      </if>
+      <if test="phone != null">
+        phone,
+      </if>
+      <if test="ifDisable != null">
+        if_disable,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="state != null">
+        state,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="adminName != null">
+        #{adminName,jdbcType=VARCHAR},
+      </if>
+      <if test="adminPwd != null">
+        #{adminPwd,jdbcType=VARCHAR},
+      </if>
+      <if test="nick != null">
+        #{nick,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null">
+        #{phone,jdbcType=INTEGER},
+      </if>
+      <if test="ifDisable != null">
+        #{ifDisable,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="state != null">
+        #{state,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.model.SysAdmin">
+    update sys_admin
+    <set>
+      <if test="adminName != null">
+        admin_name = #{adminName,jdbcType=VARCHAR},
+      </if>
+      <if test="adminPwd != null">
+        admin_pwd = #{adminPwd,jdbcType=VARCHAR},
+      </if>
+      <if test="nick != null">
+        nick = #{nick,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null">
+        phone = #{phone,jdbcType=INTEGER},
+      </if>
+      <if test="ifDisable != null">
+        if_disable = #{ifDisable,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="state != null">
+        state = #{state,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.model.SysAdmin">
+    update sys_admin
+    set admin_name = #{adminName,jdbcType=VARCHAR},
+      admin_pwd = #{adminPwd,jdbcType=VARCHAR},
+      nick = #{nick,jdbcType=VARCHAR},
+      phone = #{phone,jdbcType=INTEGER},
+      if_disable = #{ifDisable,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      state = #{state,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <resultMap id="BaseResultMap" type="com.model.SysAdmin">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="admin_name" jdbcType="VARCHAR" property="adminName" />
+    <result column="admin_pwd" jdbcType="VARCHAR" property="adminPwd" />
+    <result column="nick" jdbcType="VARCHAR" property="nick" />
+    <result column="phone" jdbcType="INTEGER" property="phone" />
+    <result column="if_disable" jdbcType="INTEGER" property="ifDisable" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="state" jdbcType="INTEGER" property="state" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, admin_name, admin_pwd, nick, phone, if_disable, create_time, state
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sys_admin
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from sys_admin
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.model.SysAdmin">
+    insert into sys_admin (id, admin_name, admin_pwd, 
+      nick, phone, if_disable, 
+      create_time, state)
+    values (#{id,jdbcType=INTEGER}, #{adminName,jdbcType=VARCHAR}, #{adminPwd,jdbcType=VARCHAR}, 
+      #{nick,jdbcType=VARCHAR}, #{phone,jdbcType=INTEGER}, #{ifDisable,jdbcType=INTEGER}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{state,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.model.SysAdmin">
+    insert into sys_admin
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="adminName != null">
+        admin_name,
+      </if>
+      <if test="adminPwd != null">
+        admin_pwd,
+      </if>
+      <if test="nick != null">
+        nick,
+      </if>
+      <if test="phone != null">
+        phone,
+      </if>
+      <if test="ifDisable != null">
+        if_disable,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="state != null">
+        state,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="adminName != null">
+        #{adminName,jdbcType=VARCHAR},
+      </if>
+      <if test="adminPwd != null">
+        #{adminPwd,jdbcType=VARCHAR},
+      </if>
+      <if test="nick != null">
+        #{nick,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null">
+        #{phone,jdbcType=INTEGER},
+      </if>
+      <if test="ifDisable != null">
+        #{ifDisable,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="state != null">
+        #{state,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.model.SysAdmin">
+    update sys_admin
+    <set>
+      <if test="adminName != null">
+        admin_name = #{adminName,jdbcType=VARCHAR},
+      </if>
+      <if test="adminPwd != null">
+        admin_pwd = #{adminPwd,jdbcType=VARCHAR},
+      </if>
+      <if test="nick != null">
+        nick = #{nick,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null">
+        phone = #{phone,jdbcType=INTEGER},
+      </if>
+      <if test="ifDisable != null">
+        if_disable = #{ifDisable,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="state != null">
+        state = #{state,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.model.SysAdmin">
+    update sys_admin
+    set admin_name = #{adminName,jdbcType=VARCHAR},
+      admin_pwd = #{adminPwd,jdbcType=VARCHAR},
+      nick = #{nick,jdbcType=VARCHAR},
+      phone = #{phone,jdbcType=INTEGER},
+      if_disable = #{ifDisable,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      state = #{state,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <resultMap id="BaseResultMap" type="com.model.SysAdmin">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="admin_name" jdbcType="VARCHAR" property="adminName" />
+    <result column="admin_pwd" jdbcType="VARCHAR" property="adminPwd" />
+    <result column="nick" jdbcType="VARCHAR" property="nick" />
+    <result column="phone" jdbcType="INTEGER" property="phone" />
+    <result column="if_disable" jdbcType="INTEGER" property="ifDisable" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="state" jdbcType="INTEGER" property="state" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, admin_name, admin_pwd, nick, phone, if_disable, create_time, state
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sys_admin
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from sys_admin
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.model.SysAdmin">
+    insert into sys_admin (id, admin_name, admin_pwd, 
+      nick, phone, if_disable, 
+      create_time, state)
+    values (#{id,jdbcType=INTEGER}, #{adminName,jdbcType=VARCHAR}, #{adminPwd,jdbcType=VARCHAR}, 
+      #{nick,jdbcType=VARCHAR}, #{phone,jdbcType=INTEGER}, #{ifDisable,jdbcType=INTEGER}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{state,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.model.SysAdmin">
+    insert into sys_admin
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="adminName != null">
+        admin_name,
+      </if>
+      <if test="adminPwd != null">
+        admin_pwd,
+      </if>
+      <if test="nick != null">
+        nick,
+      </if>
+      <if test="phone != null">
+        phone,
+      </if>
+      <if test="ifDisable != null">
+        if_disable,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="state != null">
+        state,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="adminName != null">
+        #{adminName,jdbcType=VARCHAR},
+      </if>
+      <if test="adminPwd != null">
+        #{adminPwd,jdbcType=VARCHAR},
+      </if>
+      <if test="nick != null">
+        #{nick,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null">
+        #{phone,jdbcType=INTEGER},
+      </if>
+      <if test="ifDisable != null">
+        #{ifDisable,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="state != null">
+        #{state,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.model.SysAdmin">
+    update sys_admin
+    <set>
+      <if test="adminName != null">
+        admin_name = #{adminName,jdbcType=VARCHAR},
+      </if>
+      <if test="adminPwd != null">
+        admin_pwd = #{adminPwd,jdbcType=VARCHAR},
+      </if>
+      <if test="nick != null">
+        nick = #{nick,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null">
+        phone = #{phone,jdbcType=INTEGER},
+      </if>
+      <if test="ifDisable != null">
+        if_disable = #{ifDisable,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="state != null">
+        state = #{state,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.model.SysAdmin">
     update sys_admin
     set admin_name = #{adminName,jdbcType=VARCHAR},
       admin_pwd = #{adminPwd,jdbcType=VARCHAR},
@@ -127,6 +629,6 @@
   </update>
 
   <select id="selectByUserNameAndPwd" resultMap="BaseResultMap">
-    select <include refid="Base_Column_List"/> from sys_admin where admin_name = #{username} and admin_pwd=#{password}
+    select <include refid="Base_Column_List" /> from sys_admin where admin_name = #{username} and admin_pwd=#{password}
   </select>
 </mapper>

@@ -14,14 +14,7 @@ import org.mybatis.generator.exception.InvalidConfigurationException;
 import org.mybatis.generator.exception.XMLParserException;
 import org.mybatis.generator.internal.DefaultShellCallback;
 
-/**
- * 描述：
- * @since 1.9.10
- * @version 1.9.10
- * @作者：niexiaohui
- * @创建时间：2016年11月22日
- * @修改记录：
- */
+
 public class MyBatisGeneratorUtil {
     public static void main(String[] args) throws URISyntaxException {
         try {
