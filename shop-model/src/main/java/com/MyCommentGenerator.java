@@ -5,17 +5,12 @@ import static org.mybatis.generator.internal.util.StringUtility.isTrue;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Properties;
+import java.util.Set;
 
 import org.mybatis.generator.api.CommentGenerator;
 import org.mybatis.generator.api.IntrospectedColumn;
 import org.mybatis.generator.api.IntrospectedTable;
-import org.mybatis.generator.api.dom.java.CompilationUnit;
-import org.mybatis.generator.api.dom.java.Field;
-import org.mybatis.generator.api.dom.java.InnerClass;
-import org.mybatis.generator.api.dom.java.InnerEnum;
-import org.mybatis.generator.api.dom.java.JavaElement;
-import org.mybatis.generator.api.dom.java.Method;
-import org.mybatis.generator.api.dom.java.Parameter;
+import org.mybatis.generator.api.dom.java.*;
 import org.mybatis.generator.api.dom.xml.XmlElement;
 import org.mybatis.generator.config.MergeConstants;
 import org.mybatis.generator.config.PropertyRegistry;
@@ -60,6 +55,26 @@ public class MyCommentGenerator implements CommentGenerator{
     public void addRootComment(XmlElement rootElement) {
         // add no document level comments by default
         return;
+    }
+
+    public void addGeneralMethodAnnotation(Method method, IntrospectedTable introspectedTable, Set<FullyQualifiedJavaType> set) {
+
+    }
+
+    public void addGeneralMethodAnnotation(Method method, IntrospectedTable introspectedTable, IntrospectedColumn introspectedColumn, Set<FullyQualifiedJavaType> set) {
+
+    }
+
+    public void addFieldAnnotation(Field field, IntrospectedTable introspectedTable, Set<FullyQualifiedJavaType> set) {
+
+    }
+
+    public void addFieldAnnotation(Field field, IntrospectedTable introspectedTable, IntrospectedColumn introspectedColumn, Set<FullyQualifiedJavaType> set) {
+
+    }
+
+    public void addClassAnnotation(InnerClass innerClass, IntrospectedTable introspectedTable, Set<FullyQualifiedJavaType> set) {
+
     }
 
     public void addConfigurationProperties(Properties properties) {
@@ -159,6 +174,10 @@ public class MyCommentGenerator implements CommentGenerator{
         sb.append(introspectedTable.getFullyQualifiedTable());
         field.addJavaDocLine(sb.toString().replace("\n", " "));
         field.addJavaDocLine(" */");
+    }
+
+    public void addModelClassComment(TopLevelClass topLevelClass, IntrospectedTable introspectedTable) {
+
     }
 
     public void addGeneralMethodComment(Method method, IntrospectedTable introspectedTable) {

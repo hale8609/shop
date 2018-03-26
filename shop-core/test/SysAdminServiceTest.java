@@ -18,7 +18,7 @@ public class SysAdminServiceTest {
     public void testLogin(){
         String username = "admin";
         String password = "123456";
-        SysAdmin sysAdmin = sysAdminService.login(username, password);
+        SysAdmin sysAdmin = sysAdminService.selectAdminByUsernameAndPwd(username, password);
         Assert.assertNotNull(sysAdmin);
     }
 }

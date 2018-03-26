@@ -8,85 +8,85 @@ import org.apache.ibatis.annotations.Param;
 public interface SysRoleMapper {
     /**
      *
-     * @mbggenerated 2018-03-23
+     * @mbg.generated 2018-03-26
      */
-    int countByExample(SysRoleExample example);
+    long countByExample(SysRoleExample example);
 
     /**
      *
-     * @mbggenerated 2018-03-23
+     * @mbg.generated 2018-03-26
      */
     int deleteByExample(SysRoleExample example);
 
     /**
      *
-     * @mbggenerated 2018-03-23
+     * @mbg.generated 2018-03-26
      */
     int deleteByPrimaryKey(Integer id);
 
     /**
      *
-     * @mbggenerated 2018-03-23
+     * @mbg.generated 2018-03-26
      */
     int insert(SysRole record);
 
     /**
      *
-     * @mbggenerated 2018-03-23
+     * @mbg.generated 2018-03-26
      */
     int insertSelective(SysRole record);
 
     /**
      *
-     * @mbggenerated 2018-03-23
+     * @mbg.generated 2018-03-26
      */
     List<SysRole> selectByExampleWithBLOBs(SysRoleExample example);
 
     /**
      *
-     * @mbggenerated 2018-03-23
+     * @mbg.generated 2018-03-26
      */
     List<SysRole> selectByExample(SysRoleExample example);
 
     /**
      *
-     * @mbggenerated 2018-03-23
+     * @mbg.generated 2018-03-26
      */
     SysRole selectByPrimaryKey(Integer id);
 
     /**
      *
-     * @mbggenerated 2018-03-23
+     * @mbg.generated 2018-03-26
      */
     int updateByExampleSelective(@Param("record") SysRole record, @Param("example") SysRoleExample example);
 
     /**
      *
-     * @mbggenerated 2018-03-23
+     * @mbg.generated 2018-03-26
      */
     int updateByExampleWithBLOBs(@Param("record") SysRole record, @Param("example") SysRoleExample example);
 
     /**
      *
-     * @mbggenerated 2018-03-23
+     * @mbg.generated 2018-03-26
      */
     int updateByExample(@Param("record") SysRole record, @Param("example") SysRoleExample example);
 
     /**
      *
-     * @mbggenerated 2018-03-23
+     * @mbg.generated 2018-03-26
      */
     int updateByPrimaryKeySelective(SysRole record);
 
     /**
      *
-     * @mbggenerated 2018-03-23
+     * @mbg.generated 2018-03-26
      */
     int updateByPrimaryKeyWithBLOBs(SysRole record);
 
     /**
      *
-     * @mbggenerated 2018-03-23
+     * @mbg.generated 2018-03-26
      */
     int updateByPrimaryKey(SysRole record);
 }

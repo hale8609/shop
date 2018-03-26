@@ -8,67 +8,67 @@ import org.apache.ibatis.annotations.Param;
 public interface SysLogMapper {
     /**
      *
-     * @mbggenerated 2018-03-23
+     * @mbg.generated 2018-03-26
      */
-    int countByExample(SysLogExample example);
+    long countByExample(SysLogExample example);
 
     /**
      *
-     * @mbggenerated 2018-03-23
+     * @mbg.generated 2018-03-26
      */
     int deleteByExample(SysLogExample example);
 
     /**
      *
-     * @mbggenerated 2018-03-23
+     * @mbg.generated 2018-03-26
      */
     int deleteByPrimaryKey(Integer id);
 
     /**
      *
-     * @mbggenerated 2018-03-23
+     * @mbg.generated 2018-03-26
      */
     int insert(SysLog record);
 
     /**
      *
-     * @mbggenerated 2018-03-23
+     * @mbg.generated 2018-03-26
      */
     int insertSelective(SysLog record);
 
     /**
      *
-     * @mbggenerated 2018-03-23
+     * @mbg.generated 2018-03-26
      */
     List<SysLog> selectByExample(SysLogExample example);
 
     /**
      *
-     * @mbggenerated 2018-03-23
+     * @mbg.generated 2018-03-26
      */
     SysLog selectByPrimaryKey(Integer id);
 
     /**
      *
-     * @mbggenerated 2018-03-23
+     * @mbg.generated 2018-03-26
      */
     int updateByExampleSelective(@Param("record") SysLog record, @Param("example") SysLogExample example);
 
     /**
      *
-     * @mbggenerated 2018-03-23
+     * @mbg.generated 2018-03-26
      */
     int updateByExample(@Param("record") SysLog record, @Param("example") SysLogExample example);
 
     /**
      *
-     * @mbggenerated 2018-03-23
+     * @mbg.generated 2018-03-26
      */
     int updateByPrimaryKeySelective(SysLog record);
 
     /**
      *
-     * @mbggenerated 2018-03-23
+     * @mbg.generated 2018-03-26
      */
     int updateByPrimaryKey(SysLog record);
 }

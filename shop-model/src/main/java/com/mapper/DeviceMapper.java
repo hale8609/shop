@@ -9,85 +9,85 @@ import org.apache.ibatis.annotations.Param;
 public interface DeviceMapper {
     /**
      *
-     * @mbggenerated 2018-03-23
+     * @mbg.generated 2018-03-26
      */
-    int countByExample(DeviceExample example);
+    long countByExample(DeviceExample example);
 
     /**
      *
-     * @mbggenerated 2018-03-23
+     * @mbg.generated 2018-03-26
      */
     int deleteByExample(DeviceExample example);
 
     /**
      *
-     * @mbggenerated 2018-03-23
+     * @mbg.generated 2018-03-26
      */
     int deleteByPrimaryKey(Integer id);
 
     /**
      *
-     * @mbggenerated 2018-03-23
+     * @mbg.generated 2018-03-26
      */
     int insert(DeviceWithBLOBs record);
 
     /**
      *
-     * @mbggenerated 2018-03-23
+     * @mbg.generated 2018-03-26
      */
     int insertSelective(DeviceWithBLOBs record);
 
     /**
      *
-     * @mbggenerated 2018-03-23
+     * @mbg.generated 2018-03-26
      */
     List<DeviceWithBLOBs> selectByExampleWithBLOBs(DeviceExample example);
 
     /**
      *
-     * @mbggenerated 2018-03-23
+     * @mbg.generated 2018-03-26
      */
     List<Device> selectByExample(DeviceExample example);
 
     /**
      *
-     * @mbggenerated 2018-03-23
+     * @mbg.generated 2018-03-26
      */
     DeviceWithBLOBs selectByPrimaryKey(Integer id);
 
     /**
      *
-     * @mbggenerated 2018-03-23
+     * @mbg.generated 2018-03-26
      */
     int updateByExampleSelective(@Param("record") DeviceWithBLOBs record, @Param("example") DeviceExample example);
 
     /**
      *
-     * @mbggenerated 2018-03-23
+     * @mbg.generated 2018-03-26
      */
     int updateByExampleWithBLOBs(@Param("record") DeviceWithBLOBs record, @Param("example") DeviceExample example);
 
     /**
      *
-     * @mbggenerated 2018-03-23
+     * @mbg.generated 2018-03-26
      */
     int updateByExample(@Param("record") Device record, @Param("example") DeviceExample example);
 
     /**
      *
-     * @mbggenerated 2018-03-23
+     * @mbg.generated 2018-03-26
      */
     int updateByPrimaryKeySelective(DeviceWithBLOBs record);
 
     /**
      *
-     * @mbggenerated 2018-03-23
+     * @mbg.generated 2018-03-26
      */
     int updateByPrimaryKeyWithBLOBs(DeviceWithBLOBs record);
 
     /**
      *
-     * @mbggenerated 2018-03-23
+     * @mbg.generated 2018-03-26
      */
     int updateByPrimaryKey(Device record);
 }

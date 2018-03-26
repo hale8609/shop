@@ -25,7 +25,7 @@ public class LoginController {
             httpResult.setCodeAndMsg(HttpResult.CODE_ACCOUNT_OR_PASSWORD_CAN_NOT_BE_NULL,"账号或者密码不能为空");
             return httpResult;
         }
-        SysAdmin sysAdmin = sysAdminService.login(username, password);
+        SysAdmin sysAdmin = sysAdminService.selectAdminByUsernameAndPwd(username, password);
         if (sysAdmin == null){
             httpResult.setCodeAndMsg(HttpResult.CODE_ACCOUNT_OR_PASSWORD_INCORRECT,"账号或者密码不正确");
         }else {

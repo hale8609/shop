@@ -9,6 +9,7 @@
     <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
     <modules>
+        <module>shop-core</module>
         <module>shop-web</module>
         <module>shop-model</module>
         <module>shop-utils</module>

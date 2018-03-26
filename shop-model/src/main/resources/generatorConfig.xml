@@ -49,12 +49,6 @@
             <property name="enableSubPackages" value="true"/>
         </javaClientGenerator>
 
-
-        <!-- 系统模块 -->
-        <table tableName="sys%"/>
-        <!-- 设备模块 -->
-        <table tableName="device%"/>
-        <!-- 订单模块 -->
-        <table tableName="order%"/>
+        <table tableName="device_goods"/>
     </context>
 </generatorConfiguration>
