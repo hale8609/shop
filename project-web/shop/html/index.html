@@ -7,6 +7,7 @@
 	    <link rel="stylesheet" type="text/css" href="../lib/font-awesome/css/font-awesome.min.css"/>
 	    <link rel="stylesheet" type="text/css" href="../lib/AdminLTE/css/AdminLTE.min.css"/>
 	    <link rel="stylesheet" type="text/css" href="../lib/AdminLTE/css/skins/skin-blue.min.css"/>
+	    <link rel="stylesheet" type="text/css" href="../css/index.css">
     </head>
     <body class="hold-transition skin-blue sidebar-mini">
     	<div class="warpper" id="content">
@@ -81,7 +82,7 @@
 			            </span>
 			          </a>
 			          <ul class="treeview-menu">
-			            <li v-for="(child,index) in menu.childs" @click="toPage($event,index)"><a><i class="fa fa-circle-o"></i>{{child.name}}</a>
+			            <li v-for="(child,index) in menu.childs" @click="toPage($event,index)" :data-url="child.url"><a><i class="fa fa-circle-o"></i>{{child.name}}</a>
 			            </li>
 			          </ul>
 			        </li>
@@ -91,20 +92,13 @@
 			    <!-- /.sidebar -->
 			  </aside>
 
-			  <div class="content-wrapper">
-			    <section class="content-header">
-			      <h1>{{child}}</h1>
-			      <ol class="breadcrumb">
-			        <li><a href="#"><i class="fa fa-dashboard"></i>首页</a></li>
-			        <li><a href="#">{{parent}}</a></li>
-			        <li class="active">{{child}}</li>
-			      </ol>
-			    </section>			
-			    <iframe src="login.html" frameborder="0" scrolling="no" id="iframe">
+			 	
+			    <iframe src="login.html" frameborder="0" scrolling="no" id="iframe" class="iframe">
 			    </iframe>
-			  </div>			  
+					  
     	</div>
     </body>
+
     <script src="../lib/vue/vue.min.js"></script>
     <script src="../lib/jquery/jquery.min.js"></script>
 	<script src="../lib/bootstrap/js/bootstrap.min.js"></script>

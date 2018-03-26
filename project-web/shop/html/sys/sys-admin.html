@@ -2,14 +2,35 @@
 <html>
     <head>
         <title>用户管理</title>
-         <link rel="stylesheet" type="text/css" href="./../lib/bootstrap/css/bootstrap.min.css"/>
-	    <link rel="stylesheet" type="text/css" href="./../lib/font-awesome/css/font-awesome.min.css"/>
-	    <link rel="stylesheet" type="text/css" href="./../lib/AdminLTE/css/AdminLTE.min.css"/>
-	    <link rel="stylesheet" type="text/css" href="./../lib/AdminLTE/css/skins/skin-blue.min.css"/>
+         <link rel="stylesheet" type="text/css" href="../../lib/bootstrap/css/bootstrap.min.css"/>
+	    <link rel="stylesheet" type="text/css" href="../../lib/font-awesome/css/font-awesome.min.css"/>
+	    <link rel="stylesheet" type="text/css" href="../../lib/AdminLTE/css/AdminLTE.min.css"/>
+	    <link rel="stylesheet" type="text/css" href="../../lib/AdminLTE/css/skins/skin-blue.min.css"/>
     </head>
     <body>
-    	<div class="content">
-    		<button type="button" class="btn btn-block btn-primary">Primary</button>
-    	</div>
+    	<div class="wrapper" style="width: 100%;height: 100%">
+		    <section class="content-header">
+		      <h1>{{child}}</h1>
+		      <ol class="breadcrumb">
+		        <li><a href="#"><i class="fa fa-dashboard"></i>首页</a></li>
+		        <li><a href="#">{{parent}}</a></li>
+		        <li class="active">{{child}}</li>	
+		      </ol>
+		    </section>
+	    	<div class="content">
+	    		<button type="button" class="btn btn-block btn-primary">Primary</button>
+	    	</div>
+    	</div>		
     </body>
+    <script type="text/javascript" src="../../lib/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="../../lib/vue/vue.min.js"></script>
+    <script type="text/javascript">
+    	var app = new Vue({
+		  el: '.wrapper',
+		  data: {
+		    child: parent.$("li .active")[0].innerText,
+		    parent:parent.$(".menu-open").find('span')[0].innerText
+		  }
+		})
+	</script>
 </html>
