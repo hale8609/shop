@@ -72,5 +72,5 @@ public interface SysMenuMapper {
      */
     int updateByPrimaryKey(SysMenu record);
 
-    List<SysMenu> selectMenusByAdminId(int adminId);
+    List<SysMenu> selectMenusByAdminId(@Param("adminId") int adminId,@Param("parentId") int parentId);
 }

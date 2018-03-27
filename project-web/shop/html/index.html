@@ -76,13 +76,13 @@
 			       	<li class="header">Menu</li>
 			       	<li class="treeview" v-for="menu in menus">
 			          <a href="#">
-			            <i :class="menu.icon"></i> <span  v-cloak>{{menu.name}}</span>
+			            <i :class="menu.icon"></i> <span  v-cloak>{{menu.menuName}}</span>
 			            <span class="pull-right-container">
 			              <i class="fa fa-angle-left pull-right"></i>
 			            </span>
 			          </a>
 			          <ul class="treeview-menu">
-			            <li v-for="(child,index) in menu.childs" @click="toPage($event,index)" :data-url="child.url"><a><i class="fa fa-circle-o"></i>{{child.name}}</a>
+			            <li v-for="(child,index) in menu.subMenus" @click="toPage($event,index)" :data-url="child.url"><a><i class="fa fa-circle-o"></i>{{child.menuName}}</a>
 			            </li>
 			          </ul>
 			        </li>

@@ -7,6 +7,7 @@
     <result column="url" jdbcType="VARCHAR" property="url" />
     <result column="parent_id" jdbcType="INTEGER" property="parentId" />
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="icon" jdbcType="VARCHAR" property="icon" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -209,8 +210,8 @@
     where id = #{id,jdbcType=INTEGER}
   </update>
 
-  <!--自定义-->
-  <select id="selectMenusByAdminId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select * from vi_admin_menu where admin_id = #{adminId};
+  <select id="selectMenusByAdminId" resultMap="BaseResultMap">
+    select * from vi_admin_menu where admin_id = #{adminId} and parent_id = #{parentId};
   </select>
+
 </mapper>

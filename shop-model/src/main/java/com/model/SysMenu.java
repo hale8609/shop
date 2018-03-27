@@ -2,8 +2,20 @@ package com.model;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 public class SysMenu implements Serializable {
+
+    /**
+     * 子菜单集合
+     */
+    private List<SysMenu> subMenus;
+
+    /**
+     * 图标
+     */
+    private String icon;
+
     /**
      * 主键
      */
@@ -112,5 +124,21 @@ public class SysMenu implements Serializable {
      */
     public void setCreateTime(Date createTime) {
         this.createTime = createTime;
+    }
+
+    public List<SysMenu> getSubMenus() {
+        return subMenus;
+    }
+
+    public void setSubMenus(List<SysMenu> subMenus) {
+        this.subMenus = subMenus;
+    }
+
+    public String getIcon() {
+        return icon;
+    }
+
+    public void setIcon(String icon) {
+        this.icon = icon;
     }
 }

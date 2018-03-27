@@ -1,28 +1,15 @@
-var data = [
+/*var data = [
 		{"icon":"fa fa-gear","name":"系统","childs":[{"name":"管理员","url":"../html/sys/sys-admin.html"},{"name":"角色","url":"test"}]},
 		{"icon":"fa fa-user","name":"用户","childs":[{"name":"用户管理","url":"../html/index.html"}]}
-		];
+		];*/
 var action = {
 	getMenu: config.server+"/index/getMenus"
 }
 $(function(){
-	//获取菜单数据
-	$.ajax({
-		url: action.getMenu,
-        xhrFields: {
-            withCredentials: true
-        },
-		type: 'Get',
-		success:function(res){
-			console.log(res);
-		}
-	})
-	
-});		
-var vue = new Vue({
+	var vue = new Vue({
     el:'#content',
     data: {
-        menus:data,
+        menus:[],
         parent:"首页",
         child:"首页",
         ins:0
@@ -39,6 +26,21 @@ var vue = new Vue({
     	}
     }
 });
+	//获取菜单数据
+	$.ajax({
+		url: action.getMenu,
+        xhrFields: {
+            withCredentials: true
+        },
+		type: 'Get',
+		success:function(res){
+			if (res.code = '0000'){
+				vue.menus = res.result;
+			}
+		}
+	})
+	
+	
 
 //点击折叠菜单按钮调整iframe宽度
 $(".sidebar-toggle").click(function() {
@@ -59,3 +61,4 @@ function setIframeHeight() {
 	$(iframe).css("width",$(document.body).width()-$(".main-sidebar").width());
 	$(iframe).css("height",$(".main-sidebar").height());
 }
+});		

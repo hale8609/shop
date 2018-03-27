@@ -3,6 +3,7 @@ package com.controller;
 import com.model.SysAdmin;
 import com.model.SysMenu;
 import com.service.SysMenuService;
+import com.util.HttpResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,9 +22,11 @@ public class IndexController {
     @RequestMapping("/getMenus")
     @ResponseBody
     public Object getMenus(HttpSession session) {
+        HttpResult httpResult = new HttpResult();
         SysAdmin sysAdmin = (SysAdmin) session.getAttribute("sysAdmin");
         System.out.println("indexSessionId:"+session.getId());
         List<SysMenu> menus = sysMenuService.selectMenusByAdminId(sysAdmin.getId());
-        return menus;
+        httpResult.setResult(menus);
+        return httpResult;
     }
 }
