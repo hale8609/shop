@@ -9,7 +9,9 @@ $(function(){
 	//获取菜单数据
 	$.ajax({
 		url: action.getMenu,
-		crossDomain: true,
+        xhrFields: {
+            withCredentials: true
+        },
 		type: 'Get',
 		success:function(res){
 			console.log(res);
