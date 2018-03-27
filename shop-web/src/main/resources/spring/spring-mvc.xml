@@ -17,4 +17,13 @@
             <bean class="com.config.LoginInterceptor"/>
         </mvc:interceptor>
     </mvc:interceptors>
+
+    <!-- 解决跨域请求问题，spring版本需4.2以上 -->
+    <mvc:cors>
+        <mvc:mapping path="/**/**"
+                     allowed-origins="*"
+                     allowed-methods="POST, GET, OPTIONS, DELETE, PUT"
+                     allowed-headers="Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With"
+                     allow-credentials="true" />
+    </mvc:cors>
 </beans>
