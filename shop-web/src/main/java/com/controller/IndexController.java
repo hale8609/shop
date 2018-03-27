@@ -22,6 +22,7 @@ public class IndexController {
     @ResponseBody
     public Object getMenus(HttpSession session) {
         SysAdmin sysAdmin = (SysAdmin) session.getAttribute("sysAdmin");
+        System.out.println("indexSessionId:"+session.getId());
         List<SysMenu> menus = sysMenuService.selectMenusByAdminId(sysAdmin.getId());
         return menus;
     }

@@ -2,7 +2,22 @@ var data = [
 		{"icon":"fa fa-gear","name":"系统","childs":[{"name":"管理员","url":"../html/sys/sys-admin.html"},{"name":"角色","url":"test"}]},
 		{"icon":"fa fa-user","name":"用户","childs":[{"name":"用户管理","url":"../html/index.html"}]}
 		];
-new Vue({
+var action = {
+	getMenu: config.server+"/index/getMenus"
+}
+$(function(){
+	//获取菜单数据
+	$.ajax({
+		url: action.getMenu,
+		crossDomain: true,
+		type: 'Get',
+		success:function(res){
+			console.log(res);
+		}
+	})
+	
+});		
+var vue = new Vue({
     el:'#content',
     data: {
         menus:data,
@@ -23,6 +38,7 @@ new Vue({
     }
 });
 
+//点击折叠菜单按钮调整iframe宽度
 $(".sidebar-toggle").click(function() {
 	if($('body').hasClass('sidebar-collapse')){
 		$(iframe).css("width",$(document.body).width()-230);
@@ -31,11 +47,13 @@ $(".sidebar-toggle").click(function() {
 	}
 	
 });
+
+//设置iframe的高度
+window.onload = function () {
+setIframeHeight();
+};
+
 function setIframeHeight() {
 	$(iframe).css("width",$(document.body).width()-$(".main-sidebar").width());
 	$(iframe).css("height",$(".main-sidebar").height());
 }
-
-window.onload = function () {
-setIframeHeight();
-};

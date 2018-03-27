@@ -30,6 +30,7 @@ public class LoginController {
             httpResult.setCodeAndMsg(HttpResult.CODE_ACCOUNT_OR_PASSWORD_INCORRECT,"账号或者密码不正确");
         }else {
             session.setAttribute("sysAdmin",sysAdmin);
+            System.out.println("loginSessionId:"+session.getId());
             httpResult.setMsg("登录成功");
             httpResult.setResult(sysAdmin);
         }

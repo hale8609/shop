@@ -9,21 +9,25 @@
     <!-- 开启SpringMVC注解模式 -->
     <mvc:annotation-driven/>
 
+    <!--让spring识别是否映射的url，如果不是不拦截，为了访问静态资源-->
+    <mvc:default-servlet-handler />
+
     <mvc:interceptors>
         <!-- 使用 bean 定义一个 LoginInterceptor，直接定义在 mvc:interceptors 下面的 LoginInterceptor 将拦截所有的请求 -->
         <mvc:interceptor>
-            <mvc:mapping path="/*"/>
+            <mvc:mapping path="/**/*"/>
+            <!--不拦截静态资源-->
+            <mvc:exclude-mapping path="/**/*.css"/>
+            <mvc:exclude-mapping path="/**/*.js"/>
+            <mvc:exclude-mapping path="/**/*.png"/>
+            <mvc:exclude-mapping path="/**/*.gif"/>
+            <mvc:exclude-mapping path="/**/*.jpg"/>
+            <mvc:exclude-mapping path="/**/*.jpeg"/>
+            <mvc:exclude-mapping path="/**/*.html"/>
             <!-- 定义在 mvc:interceptor 下面的 LoginInterceptor，表示对特定的请求进行拦截 -->
             <bean class="com.config.LoginInterceptor"/>
         </mvc:interceptor>
     </mvc:interceptors>
 
-    <!-- 解决跨域请求问题，spring版本需4.2以上 -->
-    <mvc:cors>
-        <mvc:mapping path="/**/**"
-                     allowed-origins="*"
-                     allowed-methods="POST, GET, OPTIONS, DELETE, PUT"
-                     allowed-headers="Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With"
-                     allow-credentials="true" />
-    </mvc:cors>
+
 </beans>
