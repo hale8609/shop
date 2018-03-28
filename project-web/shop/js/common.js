@@ -16,7 +16,7 @@ $.ajaxSetup({
 
 })
 
-//重写Jquery的validator的部分方法，自定义错误
+//如果有使用jquery validator，则重写Jquery的validator的部分方法，自定义错误
 if ($.validator){
     $.extend( $.validator.defaults,{
     success:function(element){
