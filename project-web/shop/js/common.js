@@ -15,3 +15,22 @@ $.ajaxSetup({
     }
 
 })
+
+//重写Jquery的validator的部分方法，自定义错误
+$.extend( $.validator.defaults,{
+    success:function(element){
+        console.log("成功:")
+        console.log(element)
+        $elementBox = $(element).parent();
+        $elementBox.removeClass('has-error');
+    },
+
+    highlight:function( element, errorClass, validClass ) {
+        $elementBox = $(element).parent();
+        $elementBox.addClass('has-error');
+    },
+    errorClass:'help-block',
+    errorElement:'span'
+});
+
+

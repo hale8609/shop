@@ -19,13 +19,13 @@
   <div class="login-box-body">
     <p class="login-box-msg">Sign in to start your session</p>
 
-    <form  method="post" id="form" @submit.prevent="submit">
+    <form  method="post" id="form">
       <div class="form-group has-feedback">
-        <input type="text" class="form-control" placeholder="Username" name="username">
+        <input type="text" class="form-control" placeholder="Username" name="username" id="username">
         <span class="glyphicon glyphicon-user form-control-feedback" ></span>
       </div>
       <div class="form-group has-feedback">
-        <input type="password" class="form-control" placeholder="Password" name="password">
+        <input type="password" class="form-control" placeholder="Password" name="password" id="password">
         <span class="glyphicon glyphicon-lock form-control-feedback"></span>
       </div>
       <div class="row">
@@ -41,7 +41,8 @@
   <!-- /.login-box-body -->
 </div>  
         <script type="text/javascript" src="../lib/jquery/jquery.min.js"></script>
-        <script type="text/javascript" src="../lib/vue/vue.min.js"></script>
+        <script type="text/javascript" src="../lib/jquery-validation/jquery.validate.min.js"></script>
+        <script type="text/javascript" src="../lib/jquery-validation/localization/messages_zh.min.js"></script>
         <script type="text/javascript" src="../js/common.js"></script>
         <script type="text/javascript" src="../js/login.js"></script>
     </body>
