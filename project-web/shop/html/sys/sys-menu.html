@@ -32,6 +32,7 @@
                   <th>菜单图标</th>
                   <th>排序号</th>
                   <th>创建时间</th>
+                  <th>操作</th>
                 </thead>
 
                 <tbody>
@@ -40,7 +41,9 @@
                       <td><i class="fa fa-caret-right foldBtn" @click="openOrClose($event)"></i>{{menu.menuName}}</td>
                       <td>{{menu.url}}</td>
                       <td>{{menu.icon}}<i :class="menu.icon" class="iconShow"></i></td>
-                      <td>{{menu.sortNum}}</td><td>{{menu.createTime | timestampToDate}}</td>
+                      <td>{{menu.sortNum}}</td>
+                      <td>{{menu.createTime | timestampToDate}}</td>
+                      <td><i class="fa fa-edit"></i>sss</td>
                     </tr>
                      <template v-for="subMenu in menu.subMenus">
                       <tr :pId="subMenu.parentId" style="display: none">
@@ -49,6 +52,7 @@
                         <td>{{subMenu.icon}}</td>
                         <td>{{subMenu.sortNum}}</td>
                         <td>{{subMenu.createTime  | timestampToDate}}</td>
+                        <td><i class="fa fa-edit"></i>sss</td>
                       </tr>
                       </template>
                   </template>

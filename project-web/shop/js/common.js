@@ -9,6 +9,7 @@ $.ajaxSetup({
         withCredentials: true
     },
     complete : function(request){
+        console.log(request);
         if (request.responseJSON.code == '0002'){
             window.location.href="../html/login.html"
         }

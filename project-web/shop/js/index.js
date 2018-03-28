@@ -34,7 +34,8 @@ $(function(){
         },
 		type: 'Get',
 		success:function(res){
-			if (res.code = '0000'){
+			console.log(res);
+			if (res.code == '0000'){
 				vue.menus = res.result;
 			}
 		}

@@ -16,14 +16,20 @@
 
 .table >thead >tr > th:nth-child(1){
 	padding-left: 27px;
-	width: 200px;
+	width: 15%;
 }
 .table >thead >tr > th:nth-child(2){
-	width: 400px;
+	width: 15%;
 }
 .table >thead >tr > th:nth-child(3){
-	width: 300px;
+	width: 15%;
 }
 .table >thead >tr > th:nth-child(4){
-	width: 300px;
+	width: 10%;
+}
+.table >thead >tr > th:nth-child(5){
+	width: 15%;
+}
+.table >thead >tr > th:nth-child(6){
+	width: 30%;
 }
