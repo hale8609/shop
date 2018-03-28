@@ -8,6 +8,7 @@
     <result column="parent_id" jdbcType="INTEGER" property="parentId" />
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
     <result column="icon" jdbcType="VARCHAR" property="icon" />
+    <result column="sort_num" jdbcType="INTEGER" property="sortNum" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -85,7 +86,7 @@
     </if>
   </select>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select 
+    select
     <include refid="Base_Column_List" />
     from sys_menu
     where id = #{id,jdbcType=INTEGER}
@@ -101,10 +102,10 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.model.SysMenu">
-    insert into sys_menu (id, menu_name, url, 
-      parent_id, create_time)
-    values (#{id,jdbcType=INTEGER}, #{menuName,jdbcType=VARCHAR}, #{url,jdbcType=VARCHAR}, 
-      #{parentId,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP})
+    insert into sys_menu (id, menu_name, url,
+    parent_id, create_time)
+    values (#{id,jdbcType=INTEGER}, #{menuName,jdbcType=VARCHAR}, #{url,jdbcType=VARCHAR},
+    #{parentId,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP})
   </insert>
   <insert id="insertSelective" parameterType="com.model.SysMenu">
     insert into sys_menu
@@ -124,6 +125,12 @@
       <if test="createTime != null">
         create_time,
       </if>
+      <if test="icon != null">
+        icon,
+      </if>
+      <if test="sortNum != null">
+        sort_num,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -140,6 +147,12 @@
       </if>
       <if test="createTime != null">
         #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="icon != null">
+        #{icon,jdbcType=VARCHAR},
+      </if>
+      <if test="sortNum != null">
+        #{sortNum,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>
@@ -175,10 +188,10 @@
   <update id="updateByExample" parameterType="map">
     update sys_menu
     set id = #{record.id,jdbcType=INTEGER},
-      menu_name = #{record.menuName,jdbcType=VARCHAR},
-      url = #{record.url,jdbcType=VARCHAR},
-      parent_id = #{record.parentId,jdbcType=INTEGER},
-      create_time = #{record.createTime,jdbcType=TIMESTAMP}
+    menu_name = #{record.menuName,jdbcType=VARCHAR},
+    url = #{record.url,jdbcType=VARCHAR},
+    parent_id = #{record.parentId,jdbcType=INTEGER},
+    create_time = #{record.createTime,jdbcType=TIMESTAMP}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -204,14 +217,14 @@
   <update id="updateByPrimaryKey" parameterType="com.model.SysMenu">
     update sys_menu
     set menu_name = #{menuName,jdbcType=VARCHAR},
-      url = #{url,jdbcType=VARCHAR},
-      parent_id = #{parentId,jdbcType=INTEGER},
-      create_time = #{createTime,jdbcType=TIMESTAMP}
+    url = #{url,jdbcType=VARCHAR},
+    parent_id = #{parentId,jdbcType=INTEGER},
+    create_time = #{createTime,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=INTEGER}
   </update>
 
   <select id="selectMenusByAdminId" resultMap="BaseResultMap">
-    select * from vi_admin_menu where admin_id = #{adminId} and parent_id = #{parentId};
+    select * from vi_admin_menu where admin_id = #{adminId} and parent_id = #{parentId} order by sort_num asc;
   </select>
 
 </mapper>

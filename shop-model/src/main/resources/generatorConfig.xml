@@ -49,6 +49,6 @@
             <property name="enableSubPackages" value="true"/>
         </javaClientGenerator>
 
-        <table tableName="device_goods"/>
+        <table tableName="sys_menu"/>
     </context>
 </generatorConfiguration>

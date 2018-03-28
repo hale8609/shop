@@ -5,7 +5,7 @@
          <link rel="stylesheet" type="text/css" href="../../lib/bootstrap/css/bootstrap.min.css"/>
 	    <link rel="stylesheet" type="text/css" href="../../lib/font-awesome/css/font-awesome.min.css"/>
 	    <link rel="stylesheet" type="text/css" href="../../lib/AdminLTE/css/AdminLTE.min.css"/>
-	    <link rel="stylesheet" type="text/css" href="../../lib/AdminLTE/css/skins/skin-blue.min.css"/>
+      <link rel="stylesheet" type="text/css" href="../../css/sys-admin/sys-admin.css">
     </head>
     <body>
     	<div class="wrapper" style="width: 100%;height: 100%">
@@ -18,82 +18,50 @@
 		      </ol>
 		    </section>
 	    	<div class="content">
-	    		<!-- <div class="row">
-	    			<button type="button" class="btn  btn-primary btn-flat">Primary</button>
-	    			<button type="button" class="btn  btn-primary btn-flat">Primary</button>
-	    		</div> -->
+
 	    <div class="box">
 		     <div class="box-header with-border">
-    <button type="button" class="btn  btn-primary btn-flat">Primary</button>
-	    			<button type="button" class="btn  btn-primary btn-flat">Primary</button>
+    <button type="button" class="btn  btn-primary btn-flat"><i class="fa fa-plus"></i>添加</button>
         </div>   
 	        <div class="box-body">
 	          <div class="box-body table-responsive no-padding">
               <table class="table table-hover">
-                <tbody><tr>
-                  <th>ID</th>
-                  <th>User</th>
-                  <th>Date</th>
-                  <th>Status</th>
-                  <th>Reason</th>
-                </tr>
-                <tr>
-                  <td>183</td>
-                  <td>John Doe</td>
-                  <td>11-7-2014</td>
-                  <td><span class="label label-success">Approved</span></td>
-                  <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
-                </tr>
-                <tr>
-                  <td>219</td>
-                  <td>Alexander Pierce</td>
-                  <td>11-7-2014</td>
-                  <td><span class="label label-warning">Pending</span></td>
-                  <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
-                </tr>
-                <tr>
-                  <td>657</td>
-                  <td>Bob Doe</td>
-                  <td>11-7-2014</td>
-                  <td><span class="label label-primary">Approved</span></td>
-                  <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
-                </tr>
-                <tr>
-                  <td>175</td>
-                  <td>Mike Doe</td>
-                  <td>11-7-2014</td>
-                  <td><span class="label label-danger">Denied</span></td>
-                  <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
-                </tr>
-              </tbody></table>
+                <thead>
+                  <th>菜单名称</th>
+                  <th>url</th>
+                  <th>菜单图标</th>
+                  <th>排序号</th>
+                  <th>创建时间</th>
+                </thead>
+
+                <tbody>
+                  <template v-for="menu in menus">
+                    <tr :id="menu.id">
+                      <td><i class="fa fa-caret-right foldBtn" @click="openOrClose($event)"></i>{{menu.menuName}}</td>
+                      <td>{{menu.url}}</td>
+                      <td>{{menu.icon}}<i :class="menu.icon" class="iconShow"></i></td>
+                      <td>{{menu.sortNum}}</td><td>{{menu.createTime | timestampToDate}}</td>
+                    </tr>
+                     <template v-for="subMenu in menu.subMenus">
+                      <tr :pId="subMenu.parentId" style="display: none">
+                        <td class="firstRow">{{subMenu.menuName}}</td>
+                        <td>{{subMenu.url}}</td>
+                        <td>{{subMenu.icon}}</td>
+                        <td>{{subMenu.sortNum}}</td>
+                        <td>{{subMenu.createTime  | timestampToDate}}</td>
+                      </tr>
+                      </template>
+                  </template>
+              </tbody>
+            </table>
             </div>
 	        </div>
-	        <!-- /.box-body -->
-	        <div class="box-footer">
-	         <div class="box-footer clearfix">
-              <ul class="pagination pagination-sm no-margin pull-right">
-                <li><a href="#">«</a></li>
-                <li><a href="#">1</a></li>
-                <li><a href="#">2</a></li>
-                <li><a href="#">3</a></li>
-                <li><a href="#">»</a></li>
-              </ul>
-            </div>
-	        </div>
-        <!-- /.box-footer-->
       </div>
 	    	</div>
     	</div>		
     </body>
     <script type="text/javascript" src="../../lib/jquery/jquery.min.js"></script>
     <script type="text/javascript" src="../../lib/vue/vue.min.js"></script>
-    <script type="text/javascript">
-    	var app = new Vue({
-		  el: '.wrapper',
-		  data: {
-		    child: parent.$("li .active")[0].innerText,
-		    parent:parent.$(".menu-open").find('span')[0].innerText
-		  }
-		})
-	</script>
+    <script type="text/javascript" src="../../js/common.js"></script>
+    <script type="text/javascript" src="../../js/sys/sys-menu.js"></script>
 </html>

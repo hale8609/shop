@@ -22,7 +22,7 @@ public class SysMenuExample {
 
     /**
      *
-     * @mbg.generated 2018-03-26
+     * @mbg.generated 2018-03-28
      */
     public SysMenuExample() {
         oredCriteria = new ArrayList<Criteria>();
@@ -30,7 +30,7 @@ public class SysMenuExample {
 
     /**
      *
-     * @mbg.generated 2018-03-26
+     * @mbg.generated 2018-03-28
      */
     public void setOrderByClause(String orderByClause) {
         this.orderByClause = orderByClause;
@@ -38,7 +38,7 @@ public class SysMenuExample {
 
     /**
      *
-     * @mbg.generated 2018-03-26
+     * @mbg.generated 2018-03-28
      */
     public String getOrderByClause() {
         return orderByClause;
@@ -46,7 +46,7 @@ public class SysMenuExample {
 
     /**
      *
-     * @mbg.generated 2018-03-26
+     * @mbg.generated 2018-03-28
      */
     public void setDistinct(boolean distinct) {
         this.distinct = distinct;
@@ -54,7 +54,7 @@ public class SysMenuExample {
 
     /**
      *
-     * @mbg.generated 2018-03-26
+     * @mbg.generated 2018-03-28
      */
     public boolean isDistinct() {
         return distinct;
@@ -62,7 +62,7 @@ public class SysMenuExample {
 
     /**
      *
-     * @mbg.generated 2018-03-26
+     * @mbg.generated 2018-03-28
      */
     public List<Criteria> getOredCriteria() {
         return oredCriteria;
@@ -70,7 +70,7 @@ public class SysMenuExample {
 
     /**
      *
-     * @mbg.generated 2018-03-26
+     * @mbg.generated 2018-03-28
      */
     public void or(Criteria criteria) {
         oredCriteria.add(criteria);
@@ -78,7 +78,7 @@ public class SysMenuExample {
 
     /**
      *
-     * @mbg.generated 2018-03-26
+     * @mbg.generated 2018-03-28
      */
     public Criteria or() {
         Criteria criteria = createCriteriaInternal();
@@ -88,7 +88,7 @@ public class SysMenuExample {
 
     /**
      *
-     * @mbg.generated 2018-03-26
+     * @mbg.generated 2018-03-28
      */
     public Criteria createCriteria() {
         Criteria criteria = createCriteriaInternal();
@@ -100,7 +100,7 @@ public class SysMenuExample {
 
     /**
      *
-     * @mbg.generated 2018-03-26
+     * @mbg.generated 2018-03-28
      */
     protected Criteria createCriteriaInternal() {
         Criteria criteria = new Criteria();
@@ -109,7 +109,7 @@ public class SysMenuExample {
 
     /**
      *
-     * @mbg.generated 2018-03-26
+     * @mbg.generated 2018-03-28
      */
     public void clear() {
         oredCriteria.clear();
@@ -118,7 +118,7 @@ public class SysMenuExample {
     }
 
     /**
-     * sys_menu 2018-03-26
+     * sys_menu 2018-03-28
      */
     protected abstract static class GeneratedCriteria {
         protected List<Criterion> criteria;
@@ -361,6 +361,76 @@ public class SysMenuExample {
             return (Criteria) this;
         }
 
+        public Criteria andIconIsNull() {
+            addCriterion("icon is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andIconIsNotNull() {
+            addCriterion("icon is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andIconEqualTo(String value) {
+            addCriterion("icon =", value, "icon");
+            return (Criteria) this;
+        }
+
+        public Criteria andIconNotEqualTo(String value) {
+            addCriterion("icon <>", value, "icon");
+            return (Criteria) this;
+        }
+
+        public Criteria andIconGreaterThan(String value) {
+            addCriterion("icon >", value, "icon");
+            return (Criteria) this;
+        }
+
+        public Criteria andIconGreaterThanOrEqualTo(String value) {
+            addCriterion("icon >=", value, "icon");
+            return (Criteria) this;
+        }
+
+        public Criteria andIconLessThan(String value) {
+            addCriterion("icon <", value, "icon");
+            return (Criteria) this;
+        }
+
+        public Criteria andIconLessThanOrEqualTo(String value) {
+            addCriterion("icon <=", value, "icon");
+            return (Criteria) this;
+        }
+
+        public Criteria andIconLike(String value) {
+            addCriterion("icon like", value, "icon");
+            return (Criteria) this;
+        }
+
+        public Criteria andIconNotLike(String value) {
+            addCriterion("icon not like", value, "icon");
+            return (Criteria) this;
+        }
+
+        public Criteria andIconIn(List<String> values) {
+            addCriterion("icon in", values, "icon");
+            return (Criteria) this;
+        }
+
+        public Criteria andIconNotIn(List<String> values) {
+            addCriterion("icon not in", values, "icon");
+            return (Criteria) this;
+        }
+
+        public Criteria andIconBetween(String value1, String value2) {
+            addCriterion("icon between", value1, value2, "icon");
+            return (Criteria) this;
+        }
+
+        public Criteria andIconNotBetween(String value1, String value2) {
+            addCriterion("icon not between", value1, value2, "icon");
+            return (Criteria) this;
+        }
+
         public Criteria andParentIdIsNull() {
             addCriterion("parent_id is null");
             return (Criteria) this;
@@ -418,6 +488,66 @@ public class SysMenuExample {
 
         public Criteria andParentIdNotBetween(Integer value1, Integer value2) {
             addCriterion("parent_id not between", value1, value2, "parentId");
+            return (Criteria) this;
+        }
+
+        public Criteria andSortNumIsNull() {
+            addCriterion("sort_num is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andSortNumIsNotNull() {
+            addCriterion("sort_num is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andSortNumEqualTo(Integer value) {
+            addCriterion("sort_num =", value, "sortNum");
+            return (Criteria) this;
+        }
+
+        public Criteria andSortNumNotEqualTo(Integer value) {
+            addCriterion("sort_num <>", value, "sortNum");
+            return (Criteria) this;
+        }
+
+        public Criteria andSortNumGreaterThan(Integer value) {
+            addCriterion("sort_num >", value, "sortNum");
+            return (Criteria) this;
+        }
+
+        public Criteria andSortNumGreaterThanOrEqualTo(Integer value) {
+            addCriterion("sort_num >=", value, "sortNum");
+            return (Criteria) this;
+        }
+
+        public Criteria andSortNumLessThan(Integer value) {
+            addCriterion("sort_num <", value, "sortNum");
+            return (Criteria) this;
+        }
+
+        public Criteria andSortNumLessThanOrEqualTo(Integer value) {
+            addCriterion("sort_num <=", value, "sortNum");
+            return (Criteria) this;
+        }
+
+        public Criteria andSortNumIn(List<Integer> values) {
+            addCriterion("sort_num in", values, "sortNum");
+            return (Criteria) this;
+        }
+
+        public Criteria andSortNumNotIn(List<Integer> values) {
+            addCriterion("sort_num not in", values, "sortNum");
+            return (Criteria) this;
+        }
+
+        public Criteria andSortNumBetween(Integer value1, Integer value2) {
+            addCriterion("sort_num between", value1, value2, "sortNum");
+            return (Criteria) this;
+        }
+
+        public Criteria andSortNumNotBetween(Integer value1, Integer value2) {
+            addCriterion("sort_num not between", value1, value2, "sortNum");
             return (Criteria) this;
         }
 
@@ -493,7 +623,7 @@ public class SysMenuExample {
     }
 
     /**
-     * sys_menu 2018-03-26
+     * sys_menu 2018-03-28
      */
     public static class Criterion {
         private String condition;

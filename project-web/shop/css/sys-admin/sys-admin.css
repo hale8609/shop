@@ -1,0 +1,29 @@
+
+.box-header > button > i{
+	margin-right: 5px;
+}
+
+.foldBtn{
+	width: 20px;
+}
+.table > tbody > tr > .firstRow{
+	padding-left: 27px;
+}
+
+.iconShow{
+	padding-left: 10px;
+}
+
+.table >thead >tr > th:nth-child(1){
+	padding-left: 27px;
+	width: 200px;
+}
+.table >thead >tr > th:nth-child(2){
+	width: 400px;
+}
+.table >thead >tr > th:nth-child(3){
+	width: 300px;
+}
+.table >thead >tr > th:nth-child(4){
+	width: 300px;
+}

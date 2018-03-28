@@ -3,6 +3,7 @@ package com.controller.sys;
 import com.model.SysAdmin;
 import com.model.SysMenu;
 import com.service.SysMenuService;
+import com.util.HttpResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,18 +18,19 @@ public class MenuController {
     @Autowired
     private SysMenuService sysMenuService;
 
-    @RequestMapping("/getAll")
+    @RequestMapping("/getMenus")
     @ResponseBody
     public Object getAll(HttpSession httpSession){
+        HttpResult httpResult = new HttpResult();
         SysAdmin admin = (SysAdmin) httpSession.getAttribute("sysAdmin");
         List<SysMenu> menus = sysMenuService.selectMenusByAdminId(admin.getId());
-        return menus;
+        httpResult.setResult(menus);
+        return httpResult;
     }
 
-
-    @RequestMapping("/add")
+    @RequestMapping("/saveOrUpdate")
     @ResponseBody
-    public Object add(SysAdmin sysAdmin){
+    public Object saveOrUpdate(){
         return null;
     }
 
@@ -38,9 +40,4 @@ public class MenuController {
         return null;
     }
 
-    @RequestMapping("/update")
-    @ResponseBody
-    public Object update(){
-        return null;
-    }
 }

@@ -8,67 +8,67 @@ import org.apache.ibatis.annotations.Param;
 public interface SysMenuMapper {
     /**
      *
-     * @mbg.generated 2018-03-26
+     * @mbg.generated 2018-03-28
      */
     long countByExample(SysMenuExample example);
 
     /**
      *
-     * @mbg.generated 2018-03-26
+     * @mbg.generated 2018-03-28
      */
     int deleteByExample(SysMenuExample example);
 
     /**
      *
-     * @mbg.generated 2018-03-26
+     * @mbg.generated 2018-03-28
      */
     int deleteByPrimaryKey(Integer id);
 
     /**
      *
-     * @mbg.generated 2018-03-26
+     * @mbg.generated 2018-03-28
      */
     int insert(SysMenu record);
 
     /**
      *
-     * @mbg.generated 2018-03-26
+     * @mbg.generated 2018-03-28
      */
     int insertSelective(SysMenu record);
 
     /**
      *
-     * @mbg.generated 2018-03-26
+     * @mbg.generated 2018-03-28
      */
     List<SysMenu> selectByExample(SysMenuExample example);
 
     /**
      *
-     * @mbg.generated 2018-03-26
+     * @mbg.generated 2018-03-28
      */
     SysMenu selectByPrimaryKey(Integer id);
 
     /**
      *
-     * @mbg.generated 2018-03-26
+     * @mbg.generated 2018-03-28
      */
     int updateByExampleSelective(@Param("record") SysMenu record, @Param("example") SysMenuExample example);
 
     /**
      *
-     * @mbg.generated 2018-03-26
+     * @mbg.generated 2018-03-28
      */
     int updateByExample(@Param("record") SysMenu record, @Param("example") SysMenuExample example);
 
     /**
      *
-     * @mbg.generated 2018-03-26
+     * @mbg.generated 2018-03-28
      */
     int updateByPrimaryKeySelective(SysMenu record);
 
     /**
      *
-     * @mbg.generated 2018-03-26
+     * @mbg.generated 2018-03-28
      */
     int updateByPrimaryKey(SysMenu record);
 

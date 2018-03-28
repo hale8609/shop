@@ -7,14 +7,9 @@ import java.util.List;
 public class SysMenu implements Serializable {
 
     /**
-     * 子菜单集合
+     * 子菜单
      */
-    private List<SysMenu> subMenus;
-
-    /**
-     * 图标
-     */
-    private String icon;
+    private  List<SysMenu> subMenus;
 
     /**
      * 主键
@@ -32,9 +27,19 @@ public class SysMenu implements Serializable {
     private String url;
 
     /**
+     * 图标
+     */
+    private String icon;
+
+    /**
      * 上级菜单id,0为根目录
      */
     private Integer parentId;
+
+    /**
+     * 排序号
+     */
+    private Integer sortNum;
 
     /**
      * 创建时间
@@ -95,6 +100,22 @@ public class SysMenu implements Serializable {
     }
 
     /**
+     * 图标
+     * @return icon 图标
+     */
+    public String getIcon() {
+        return icon;
+    }
+
+    /**
+     * 图标
+     * @param icon 图标
+     */
+    public void setIcon(String icon) {
+        this.icon = icon == null ? null : icon.trim();
+    }
+
+    /**
      * 上级菜单id,0为根目录
      * @return parent_id 上级菜单id,0为根目录
      */
@@ -108,6 +129,22 @@ public class SysMenu implements Serializable {
      */
     public void setParentId(Integer parentId) {
         this.parentId = parentId;
+    }
+
+    /**
+     * 排序号
+     * @return sort_num 排序号
+     */
+    public Integer getSortNum() {
+        return sortNum;
+    }
+
+    /**
+     * 排序号
+     * @param sortNum 排序号
+     */
+    public void setSortNum(Integer sortNum) {
+        this.sortNum = sortNum;
     }
 
     /**
@@ -132,13 +169,5 @@ public class SysMenu implements Serializable {
 
     public void setSubMenus(List<SysMenu> subMenus) {
         this.subMenus = subMenus;
-    }
-
-    public String getIcon() {
-        return icon;
-    }
-
-    public void setIcon(String icon) {
-        this.icon = icon;
     }
 }
