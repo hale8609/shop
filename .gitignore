@@ -7,5 +7,6 @@ target
 rebel.xml
 .idea
 *.iml
+logs
 out
 gen

@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpSession;
+import java.util.HashMap;
 import java.util.List;
 
 @Controller
@@ -19,14 +20,25 @@ public class IndexController {
     @Autowired
     private SysMenuService sysMenuService;
 
-    @RequestMapping("/getMenus")
+    @RequestMapping("/getData")
     @ResponseBody
-    public Object getMenus(HttpSession session) {
+    public Object getData(HttpSession session) {
         HttpResult httpResult = new HttpResult();
         SysAdmin sysAdmin = (SysAdmin) session.getAttribute("sysAdmin");
-        System.out.println("indexSessionId:"+session.getId());
         List<SysMenu> menus = sysMenuService.selectMenusByAdminId(sysAdmin.getId());
-        httpResult.setResult(menus);
+        HashMap<String,Object> map = new HashMap<String, Object>();
+        map.put("admin",sysAdmin);
+        map.put("menus",menus);
+        httpResult.setResult(map);
+        return httpResult;
+    }
+
+    @RequestMapping("/logout")
+    @ResponseBody
+    public Object logout(HttpSession session){
+        HttpResult httpResult = new HttpResult();
+        session.setAttribute("sysAdmin",null);
+        httpResult.setMsg("退出成功!");
         return httpResult;
     }
 }

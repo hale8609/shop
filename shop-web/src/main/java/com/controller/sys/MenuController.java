@@ -20,7 +20,7 @@ public class MenuController {
 
     @RequestMapping("/getMenus")
     @ResponseBody
-    public Object getAll(HttpSession httpSession){
+    public Object getMenus(HttpSession httpSession){
         HttpResult httpResult = new HttpResult();
         SysAdmin admin = (SysAdmin) httpSession.getAttribute("sysAdmin");
         List<SysMenu> menus = sysMenuService.selectMenusByAdminId(admin.getId());

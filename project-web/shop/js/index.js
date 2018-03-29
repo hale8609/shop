@@ -3,7 +3,7 @@
 		{"icon":"fa fa-user","name":"用户","childs":[{"name":"用户管理","url":"../html/index.html"}]}
 		];*/
 var action = {
-	getMenu: config.server+"/index/getMenus"
+	getData: config.server+"/index/getData"
 }
 $(function(){
 	var vue = new Vue({
@@ -12,7 +12,8 @@ $(function(){
         menus:[],
         parent:"首页",
         child:"首页",
-        ins:0
+        ins:0,
+        nick:'11'
     },
     methods:{
     	toPage:function(event,index){
@@ -28,7 +29,7 @@ $(function(){
 });
 	//获取菜单数据
 	$.ajax({
-		url: action.getMenu,
+		url: action.getData,
         xhrFields: {
             withCredentials: true
         },
@@ -36,7 +37,8 @@ $(function(){
 		success:function(res){
 			console.log(res);
 			if (res.code == '0000'){
-				vue.menus = res.result;
+				vue.menus = res.result.menus;
+				vue.nick = res.result.admin.nick;
 			}
 		}
 	})
