@@ -5,8 +5,10 @@ import com.model.SysMenu;
 import com.util.HttpResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheConfig;
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -24,5 +26,23 @@ public class SysMenuService {
             sysMenu.setSubMenus(sysMenuMapper.selectMenusByAdminId(adminId,sysMenu.getId()));
         }
         return parentMenus;
+    }
+
+    @Transactional
+    public int insert(SysMenu sysMenu){
+       return sysMenuMapper.insertSelective(sysMenu);
+    }
+
+
+    @Transactional
+    @CacheEvict(value="sysMenu", allEntries=true)
+    public int update(SysMenu sysMenu){
+        return sysMenuMapper.updateByPrimaryKeySelective(sysMenu);
+    }
+
+    @Transactional
+    @CacheEvict(value="sysMenu", allEntries=true)
+    public int delete(int id){
+        return sysMenuMapper.deleteByPrimaryKey(id);
     }
 }
