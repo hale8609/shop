@@ -5,16 +5,20 @@ import com.mapper.SysAdminMapper;
 import com.model.SysAdmin;
 import com.model.SysAdminExample;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheConfig;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
+@CacheConfig(cacheNames = "sysAdmin")
 public class SysAdminService {
 
     @Autowired
     private SysAdminMapper sysAdminMapper;
 
+    @Cacheable(key = "#username")
     public SysAdmin selectAdminByUsernameAndPwd(String username,String password){
         SysAdminExample example = new SysAdminExample();
         SysAdminExample.Criteria criteria = example.createCriteria();

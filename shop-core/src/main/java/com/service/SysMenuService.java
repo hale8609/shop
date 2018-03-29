@@ -4,16 +4,20 @@ import com.mapper.SysMenuMapper;
 import com.model.SysMenu;
 import com.util.HttpResult;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheConfig;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
+@CacheConfig(cacheNames = "sysMenu")
 public class SysMenuService {
 
     @Autowired
     private SysMenuMapper sysMenuMapper;
 
+    @Cacheable(key = "#adminId")
     public List<SysMenu> selectMenusByAdminId(int adminId){
         List<SysMenu> parentMenus = sysMenuMapper.selectMenusByAdminId(adminId,0);
         for (SysMenu sysMenu: parentMenus) {
