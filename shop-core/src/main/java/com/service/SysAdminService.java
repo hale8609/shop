@@ -30,4 +30,9 @@ public class SysAdminService {
         }
         return null;
     }
+
+    public int insert(SysAdmin sysAdmin){
+        return sysAdminMapper.insertSelective(sysAdmin);
+    }
+
 }

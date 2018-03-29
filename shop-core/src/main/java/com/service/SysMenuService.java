@@ -2,6 +2,7 @@ package com.service;
 
 import com.mapper.SysMenuMapper;
 import com.model.SysMenu;
+import com.model.SysMenuExample;
 import com.util.HttpResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheConfig;
@@ -28,11 +29,18 @@ public class SysMenuService {
         return parentMenus;
     }
 
+    @Cacheable
+    public List<SysMenu> selectAllMenus(){
+        SysMenuExample example = new SysMenuExample();
+        example.setOrderByClause("sort_num");
+        List<SysMenu> menus = sysMenuMapper.selectByExample(example);
+        return menus;
+    }
+
     @Transactional
     public int insert(SysMenu sysMenu){
        return sysMenuMapper.insertSelective(sysMenu);
     }
-
 
     @Transactional
     @CacheEvict(value="sysMenu", allEntries=true)

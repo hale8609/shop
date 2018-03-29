@@ -1,7 +1,4 @@
-/*var data = [
-		{"icon":"fa fa-gear","name":"系统","childs":[{"name":"管理员","url":"../html/sys/sys-admin.html"},{"name":"角色","url":"test"}]},
-		{"icon":"fa fa-user","name":"用户","childs":[{"name":"用户管理","url":"../html/index.html"}]}
-		];*/
+
 var action = {
 	getData: config.server+"/index/getData"
 }
@@ -13,7 +10,7 @@ $(function(){
         parent:"首页",
         child:"首页",
         ins:0,
-        nick:'11'
+        nick:''
     },
     methods:{
     	toPage:function(event,index){
@@ -55,13 +52,13 @@ $(".sidebar-toggle").click(function() {
 	
 });
 
-//设置iframe的高度
-window.onload = function () {
-setIframeHeight();
-};
-
 function setIframeHeight() {
+	console.log($(iframe));
 	$(iframe).css("width",$(document.body).width()-$(".main-sidebar").width());
 	$(iframe).css("height",$(".main-sidebar").height());
 }
+//设置iframe的高度
+
+setIframeHeight();
+
 });		

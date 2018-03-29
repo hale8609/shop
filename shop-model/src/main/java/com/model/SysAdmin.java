@@ -1,5 +1,8 @@
 package com.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.io.Serializable;
 import java.util.Date;
 
@@ -17,6 +20,7 @@ public class SysAdmin implements Serializable {
     /**
      * 密码
      */
+    @JsonIgnore
     private String adminPwd;
 
     /**
@@ -32,11 +36,13 @@ public class SysAdmin implements Serializable {
     /**
      * 是否禁用(0-启用，1-禁用)
      */
+    @JsonIgnore
     private Integer ifDisable;
 
     /**
      * 创建时间
      */
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date createTime;
 
     /**

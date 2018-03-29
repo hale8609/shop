@@ -25,6 +25,12 @@ public class SysMenuServiceTest {
     }
 
     @Test
+    public void selectAllMenus(){
+        List<SysMenu> menus = sysMenuService.selectAllMenus();
+        Assert.assertNotNull(menus);
+    }
+
+    @Test
     public void testInsert(){
         SysMenu sysMenu = new SysMenu();
         sysMenu.setUrl("test3");

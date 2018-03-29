@@ -42,7 +42,7 @@
                       <td>{{menu.url}}</td>
                       <td>{{menu.icon}}<i :class="menu.icon" class="iconShow"></i></td>
                       <td>{{menu.sortNum}}</td>
-                      <td>{{menu.createTime | timestampToDate}}</td>
+                      <td>{{menu.createTime}}</td>
                       <td><i class="fa fa-edit"></i>sss</td>
                     </tr>
                      <template v-for="subMenu in menu.subMenus">
@@ -51,7 +51,7 @@
                         <td>{{subMenu.url}}</td>
                         <td>{{subMenu.icon}}</td>
                         <td>{{subMenu.sortNum}}</td>
-                        <td>{{subMenu.createTime  | timestampToDate}}</td>
+                        <td>{{subMenu.createTime}}</td>
                         <td><i class="fa fa-edit"></i>sss</td>
                       </tr>
                       </template>

@@ -29,9 +29,9 @@ $(function() {
             }
         }
     })
-    Vue.filter('timestampToDate', function(value){
+   /* Vue.filter('timestampToDate', function(value){
         return timestampToDate(value)
-    });
+    });*/
     $.ajax({
     	url: action.getMenus,
     	success:function(res){

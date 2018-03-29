@@ -1,6 +1,5 @@
 package com.controller.sys;
 
-import com.model.SysAdmin;
 import com.model.SysMenu;
 import com.service.SysMenuService;
 import com.util.HttpResult;
@@ -22,15 +21,14 @@ public class MenuController {
     @ResponseBody
     public Object getMenus(HttpSession httpSession){
         HttpResult httpResult = new HttpResult();
-        SysAdmin admin = (SysAdmin) httpSession.getAttribute("sysAdmin");
-        List<SysMenu> menus = sysMenuService.selectMenusByAdminId(admin.getId());
+        List<SysMenu> menus = sysMenuService.selectAllMenus();
         httpResult.setResult(menus);
         return httpResult;
     }
 
     @RequestMapping("/saveOrUpdate")
     @ResponseBody
-    public Object saveOrUpdate(){
+    public Object saveOrUpdate(SysMenu sysMenu){
         return null;
     }
 
