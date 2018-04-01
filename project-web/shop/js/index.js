@@ -32,7 +32,6 @@ $(function(){
         },
 		type: 'Get',
 		success:function(res){
-			console.log(res);
 			if (res.code == '0000'){
 				vue.menus = res.result.menus;
 				vue.nick = res.result.admin.nick;

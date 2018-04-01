@@ -20,7 +20,7 @@ $("#form").validate({
             		if (res.code == '0000'){
             			window.location.href="../html/index.html"
             		}else {
-            			console.log(res.msg);
+                        swal(res.msg, "", "warning");
             		}
             	},
             	error:(function(res) {

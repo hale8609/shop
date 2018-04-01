@@ -1,4 +1,3 @@
-$(function() {
 
 	var action = {
     getMenus: config.server + "/menu/getMenus",
@@ -65,9 +64,8 @@ $(function() {
                 type: 'POST',
                 data: $("#addOrUpdateForm").serialize(),
                 success:function(res){
-                    console.log(res);
                     if (res.code == '0000'){
-                        window.parent.swalParent("保存成功！","success");
+                        window.parent.swal("保存成功！", "", "success");
                         $('#addOrUpdateModel').modal('hide');
                         location.reload();
                     }else {
@@ -82,10 +80,5 @@ $(function() {
        
     });
 
-    /*$("#add").on("click",function (){
-        $('#addOrUpdateModel').modal("show");
-    });*/
-
-});
 
 

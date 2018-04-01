@@ -8,7 +8,13 @@ $.ajaxSetup({
     xhrFields: {
         withCredentials: true
     },
+    beforeSend:function(){
+        //发送ajax前显示loading
+        maskShow();
+    },
     complete : function(request){
+        //ajax完成显示loading并且判断登录状态，如果登录失效返回登录页
+        maskHide();
         if (request.responseJSON.code == '0002'){
             parent.window.location.href="/html/login.html";
         }
@@ -47,10 +53,6 @@ function timestampToDate (value){
     minute = minute < 10 ? ('0' + minute) : minute;    
     second = second < 10 ? ('0' + second) : second;   
     return y + '-' + m + '-' + d+' '+h+':'+minute+':'+second;    
-}
-
-function swalParent(title,icon){
-    swal({title: title,icon:icon});
 }
 
 
