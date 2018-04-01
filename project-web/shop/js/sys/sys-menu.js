@@ -1,15 +1,17 @@
 $(function() {
 
 	var action = {
-    getMenus: config.server + "/menu/getMenus"
-	}
+    getMenus: config.server + "/menu/getMenus",
+    saveOrUpdate:config.server + "/menu/saveOrUpdate",
+	};
 
     var vue = new Vue({
         el: '.wrapper',
         data: {
             menus: [],
             child: parent.$("li .active")[0].innerText,
-            parent: parent.$(".menu-open").find('span')[0].innerText
+            parent: parent.$(".menu-open").find('span')[0].innerText,
+            icon:''
         },
         methods:{
             openOrClose:function($event){
@@ -26,12 +28,18 @@ $(function() {
                     $obj.addClass('fa-caret-down');
                     $obj.parents('tbody').find('tr[pId='+parentId+']').show();
                 }
+            },
+            add:function(){
+                $('#addOrUpdateModel').modal("show");
+            },
+            edit:function(_this){
+                //$obj = $($event.currentTarget)
+                console.log($(_this).parents('tr').attr('id'));
             }
         }
-    })
-   /* Vue.filter('timestampToDate', function(value){
-        return timestampToDate(value)
-    });*/
+    });
+
+
     $.ajax({
     	url: action.getMenus,
     	success:function(res){
@@ -40,6 +48,44 @@ $(function() {
     		}
     	}
 
-    })
+    });
     
-})
+    $("#addOrUpdateForm").validate({
+        rules: {
+            menuName: "required",
+            sortNum: "required"
+        },
+        messages: {
+            menuName: "菜单名称不能为空",
+            sortNum: "排序号不能为空"
+        },
+        submitHandler:function(form){
+             $.ajax({
+                url: action.saveOrUpdate,
+                type: 'POST',
+                data: $("#addOrUpdateForm").serialize(),
+                success:function(res){
+                    console.log(res);
+                    if (res.code == '0000'){
+                        window.parent.swalParent("保存成功！","success");
+                        $('#addOrUpdateModel').modal('hide');
+                        location.reload();
+                    }else {
+                        console.log(res.msg);
+                    }
+                },
+                error:(function(res) {
+                    console.log(res);
+                })
+            })
+        }
+       
+    });
+
+    /*$("#add").on("click",function (){
+        $('#addOrUpdateModel').modal("show");
+    });*/
+
+});
+
+

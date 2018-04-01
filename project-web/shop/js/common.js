@@ -10,7 +10,7 @@ $.ajaxSetup({
     },
     complete : function(request){
         if (request.responseJSON.code == '0002'){
-            window.location.href="../html/login.html"
+            parent.window.location.href="/html/login.html";
         }
     }
 
@@ -47,6 +47,10 @@ function timestampToDate (value){
     minute = minute < 10 ? ('0' + minute) : minute;    
     second = second < 10 ? ('0' + second) : second;   
     return y + '-' + m + '-' + d+' '+h+':'+minute+':'+second;    
+}
+
+function swalParent(title,icon){
+    swal({title: title,icon:icon});
 }
 
 

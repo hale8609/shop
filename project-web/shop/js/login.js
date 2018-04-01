@@ -4,9 +4,7 @@ var action = {
 
 $("#form").validate({
     rules: {
-        username: {
-            required: true
-        },
+        username: "required",
         password: "required"
     },
     messages: {
@@ -14,7 +12,6 @@ $("#form").validate({
         password: "密码不能为空"
     },
     submitHandler:function(form){
-    	console.log("执行")
     	 $.ajax({
             	url: action.login,
             	type: 'POST',

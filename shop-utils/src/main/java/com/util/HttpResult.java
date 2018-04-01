@@ -61,6 +61,8 @@ public class HttpResult {
 
     /*登录失效*/
     public static final String CODE_LOGIN_FAILURE = "0002";
+    public static final String PARAMETER_CAN_NOT_BE_EMPTY = "0003";
+
     /*账号或者密码不能为空*/
     public static final String CODE_ACCOUNT_OR_PASSWORD_CAN_NOT_BE_NULL = "1001";
     /*账号或者密码不正确*/

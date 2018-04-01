@@ -32,12 +32,20 @@ public class SysMenuService {
     @Cacheable
     public List<SysMenu> selectAllMenus(){
         SysMenuExample example = new SysMenuExample();
+        example.or().andParentIdEqualTo(0);
         example.setOrderByClause("sort_num");
-        List<SysMenu> menus = sysMenuMapper.selectByExample(example);
-        return menus;
+        List<SysMenu> parentMenu = sysMenuMapper.selectByExample(example);
+        for (SysMenu sysMenu:parentMenu) {
+            SysMenuExample example2 = new SysMenuExample();
+            example2.or().andParentIdEqualTo(sysMenu.getId());
+            example2.setOrderByClause("sort_num");
+            sysMenu.setSubMenus(sysMenuMapper.selectByExample(example2));
+        }
+        return parentMenu;
     }
 
     @Transactional
+    @CacheEvict(value="sysMenu", allEntries=true)
     public int insert(SysMenu sysMenu){
        return sysMenuMapper.insertSelective(sysMenu);
     }

@@ -7,11 +7,10 @@ import java.util.Date;
 import java.util.List;
 
 public class SysMenu implements Serializable {
-
     /**
      * 子菜单
      */
-    private  List<SysMenu> subMenus;
+    private List<SysMenu> subMenus;
 
     /**
      * 主键

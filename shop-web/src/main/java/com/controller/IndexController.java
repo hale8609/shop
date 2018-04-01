@@ -23,6 +23,7 @@ public class IndexController {
     @RequestMapping("/getData")
     @ResponseBody
     public Object getData(HttpSession session) {
+
         HttpResult httpResult = new HttpResult();
         SysAdmin sysAdmin = (SysAdmin) session.getAttribute("sysAdmin");
         List<SysMenu> menus = sysMenuService.selectMenusByAdminId(sysAdmin.getId());

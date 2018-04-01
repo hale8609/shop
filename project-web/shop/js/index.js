@@ -53,7 +53,6 @@ $(".sidebar-toggle").click(function() {
 });
 
 function setIframeHeight() {
-	console.log($(iframe));
 	$(iframe).css("width",$(document.body).width()-$(".main-sidebar").width());
 	$(iframe).css("height",$(".main-sidebar").height());
 }
