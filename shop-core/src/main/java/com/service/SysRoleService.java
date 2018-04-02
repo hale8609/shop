@@ -8,6 +8,7 @@ import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -30,11 +31,23 @@ public class SysRoleService {
         return sysRoleMapper.selectByExample(example);
     }
 
+    @Transactional
+    public int insert(SysRole sysRole){
+        return sysRoleMapper.insertSelective(sysRole);
+    }
+
+
     @CacheEvict(value = "sysRole",allEntries = true)
+    @Transactional
     public int update(SysRole sysRole){
         return sysRoleMapper.updateByPrimaryKey(sysRole);
     }
 
 
+    @CacheEvict(value = "sysRole",allEntries = true)
+    @Transactional
+    public int delete(int id){
+        return sysRoleMapper.deleteByPrimaryKey(id);
+    }
 
 }
