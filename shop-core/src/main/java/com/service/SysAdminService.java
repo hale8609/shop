@@ -16,7 +16,7 @@ public class SysAdminService {
 
     @Autowired
     private SysAdminMapper sysAdminMapper;
-
+s
     @Cacheable(key = "#username+#password+'selectAdminByUsernameAndPwd'")
     public SysAdmin selectAdminByUsernameAndPwd(String username,String password){
         SysAdminExample example = new SysAdminExample();
