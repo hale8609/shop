@@ -34,6 +34,7 @@ public class HttpResult {
 
     public void setCode(String code) {
         this.code = code;
+        this.msg = "失败";
     }
 
     public String getMsg() {

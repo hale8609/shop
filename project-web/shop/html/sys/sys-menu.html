@@ -40,14 +40,14 @@
                             <tbody>
                               <template v-for="menu in menus">
                                 <tr :id="menu.id">
-                                  <td><i class="fa fa-caret-right foldBtn" @click="openOrClose($event)"></i>{{menu.menuName}}</td>
+                                  <td><i class="fa fa-caret-right foldBtn" @click="openOrClose($event.currentTarget)"></i>{{menu.menuName}}</td>
                                   <td>{{menu.url}}</td>
                                   <td>{{menu.icon}}<i :class="menu.icon" class="iconShow"></i></td>
                                   <td>{{menu.sortNum}}</td>
                                   <td>{{menu.createTime}}</td>
                                   <td>
                                       <button type="button" class="btn btn-xs btn-primary btn-flat" @click="edit($event.currentTarget)"><i class="fa fa-edit"></i> edit</button>
-                                      <button type="button" class="btn btn-xs btn-danger btn-flat"><i class="fa fa-trash"></i> delete</button>
+                                      <button type="button" class="btn btn-xs btn-danger btn-flat" @click="del($event.currentTarget)"><i class="fa fa-trash"></i> delete</button>
                                   </td>
                                 </tr>
                                  <template v-for="subMenu in menu.subMenus">
@@ -83,11 +83,13 @@
                     </div>
                     <form id="addOrUpdateForm">
                     <div class="modal-body form-horizontal">
+
+                        <input type="hidden" name="id" :value="id">
                         <div class="box-body">
                             <div class="form-group">
                               <label class="col-sm-2 control-label">上级菜单</label>
                               <div class="col-sm-10">
-                                <select class="form-control" id="parentId" name="parentId">
+                                <select class="form-control" id="parentId" name="parentId" :value="parentId">
                                   <option value="0">设为一级菜单</option>
                                   <option v-for="menu in menus" :value="menu.id">{{menu.menuName}}</option>
                                 </select>
@@ -98,13 +100,13 @@
                                 <label class="col-sm-2 control-label">菜单名称</label>
 
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control" name="menuName" placeholder="菜单名称" id="menuName">
+                                    <input type="text" class="form-control" name="menuName" placeholder="菜单名称" id="menuName" :value="menuName">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-sm-2 control-label">菜单路径</label>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control" name="url" placeholder="菜单路径" id="url">
+                                    <input type="text" class="form-control" name="url" placeholder="菜单路径" id="url" :value="url">
                                 </div>
                             </div>
                             <div class="form-group">
@@ -119,7 +121,7 @@
                             <div class="form-group">
                                 <label class="col-sm-2 control-label">排序号</label>
                                 <div class="col-sm-10">
-                                    <input type="number" class="form-control" name="sortNum" placeholder="排序号">
+                                    <input type="number" class="form-control" name="sortNum" placeholder="排序号" :value="sortNum">
                                 </div>
 
                             </div>

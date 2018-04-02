@@ -67,8 +67,29 @@ public class MenuController {
 
     @RequestMapping("/del")
     @ResponseBody
-    public Object del(){
-        return null;
+    public Object del(Integer id){
+        HttpResult httpResult = new HttpResult();
+        if (id == null){
+            httpResult.setCode(HttpResult.PARAMETER_CAN_NOT_BE_EMPTY);
+            httpResult.setMsg("id不能为空");
+            return httpResult;
+        }
+        int row = sysMenuService.delete(id);
+        httpResult.setMsg("删除成功！共删除"+row+"行。");
+        return httpResult;
     }
 
+    @RequestMapping("/getMenuById")
+    @ResponseBody
+    public Object getMenuById(Integer id){
+        HttpResult httpResult = new HttpResult();
+        if (id == null){
+            httpResult.setCode(HttpResult.PARAMETER_CAN_NOT_BE_EMPTY);
+            httpResult.setMsg("id不能为空");
+            return httpResult;
+        }
+        SysMenu menu = sysMenuService.selectById(id);
+        httpResult.setResult(menu);
+        return httpResult;
+    }
 }

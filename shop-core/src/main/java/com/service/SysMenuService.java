@@ -20,7 +20,13 @@ public class SysMenuService {
     @Autowired
     private SysMenuMapper sysMenuMapper;
 
-    @Cacheable(key = "#adminId")
+    @Cacheable(key = "#id+'selectById'")
+    public SysMenu selectById(int id){
+        SysMenu menu = sysMenuMapper.selectByPrimaryKey(id);
+        return menu;
+    }
+
+    @Cacheable(key = "#adminId+'selectMenusByAdminId'")
     public List<SysMenu> selectMenusByAdminId(int adminId){
         List<SysMenu> parentMenus = sysMenuMapper.selectMenusByAdminId(adminId,0);
         for (SysMenu sysMenu: parentMenus) {
@@ -29,7 +35,7 @@ public class SysMenuService {
         return parentMenus;
     }
 
-    @Cacheable
+    @Cacheable(key = "'selectAllMenus'")
     public List<SysMenu> selectAllMenus(){
         SysMenuExample example = new SysMenuExample();
         example.or().andParentIdEqualTo(0);
@@ -59,6 +65,17 @@ public class SysMenuService {
     @Transactional
     @CacheEvict(value="sysMenu", allEntries=true)
     public int delete(int id){
-        return sysMenuMapper.deleteByPrimaryKey(id);
+        int rows = 0;
+        SysMenu menu = sysMenuMapper.selectByPrimaryKey(id);
+        if (menu.getParentId() == 0){
+            rows += sysMenuMapper.deleteByPrimaryKey(id);
+            SysMenuExample sysMenuExample = new SysMenuExample();
+            sysMenuExample.or().andParentIdEqualTo(id);
+            rows +=sysMenuMapper.deleteByExample(sysMenuExample);
+        }else {
+            rows +=sysMenuMapper.deleteByPrimaryKey(id);
+        }
+        return rows;
     }
+
 }
