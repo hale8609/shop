@@ -1,13 +1,10 @@
 var config = {
-	server:'http://localhost:8080'
+	server:'http://localhost:8000/api'
 }
 
 /*ajax全局配置*/
 $.ajaxSetup({
     type: 'Post',
-    xhrFields: {
-        withCredentials: true
-    },
     beforeSend:function(){
         //发送ajax前显示loading
         maskShow();
@@ -39,20 +36,14 @@ if ($.validator){
     });
 }
 
-function timestampToDate (value){
-     var date = new Date(value);  
-    var y = date.getFullYear();    
-    var m = date.getMonth() + 1;    
-    m = m < 10 ? ('0' + m) : m;    
-    var d = date.getDate();    
-    d = d < 10 ? ('0' + d) : d;    
-    var h = date.getHours();  
-    h = h < 10 ? ('0' + h) : h;  
-    var minute = date.getMinutes();  
-    var second = date.getSeconds();  
-    minute = minute < 10 ? ('0' + minute) : minute;    
-    second = second < 10 ? ('0' + second) : second;   
-    return y + '-' + m + '-' + d+' '+h+':'+minute+':'+second;    
-}
 
+$.ajax({
+    url:config.server+"/checkLoginState",
+    success:function(res){
+        console.log(res);
+        if (res.status != '0000'){
+            parent.window.location.href="/html/login.html";
+        }
+    }
+});
 
