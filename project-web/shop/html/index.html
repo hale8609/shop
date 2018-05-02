@@ -9,6 +9,7 @@
 	    <link rel="stylesheet" type="text/css" href="../lib/AdminLTE/css/skins/skin-blue.min.css"/>
 	    <link rel="stylesheet" type="text/css" href="../lib/loading/loading.css">
 	    <link rel="stylesheet" type="text/css" href="../css/index.css">
+	    <link rel="stylesheet" type="text/css" href="../css/global.css">
     </head>
     <body class="hold-transition skin-blue sidebar-mini">
     	<div class="warpper" id="content">
@@ -53,44 +54,47 @@
 		    	<nav>
     		</header>
     		 <!-- Left side column. contains the logo and sidebar -->
-			  <aside class="main-sidebar">
-			    <!-- sidebar: style can be found in sidebar.less -->
+		    <aside class="main-sidebar">
+		    <!-- sidebar: style can be found in sidebar.less -->
 			    <section class="sidebar">
-			      <!-- Sidebar Menu -->
+			    	<!-- Sidebar Menu -->
 
-			      <ul class="sidebar-menu" data-widget="tree">
-			       	<li class="header">Menu</li>
-			       	<li class="treeview" v-for="menu in menus">
-			          <a href="#">
-			            <i :class="menu.icon"></i> <span  v-cloak>{{menu.menuName}}</span>
-			            <span class="pull-right-container">
-			              <i class="fa fa-angle-left pull-right"></i>
-			            </span>
-			          </a>
-			          <ul class="treeview-menu">
-			            <li v-for="(child,index) in menu.subMenus" @click="toPage($event,index)" :data-url="child.url"><a><i class="fa fa-circle-o"></i>{{child.menuName}}</a>
-			            </li>
-			          </ul>
-			        </li>
-			      </ul>
-			      <!-- /.sidebar-menu -->
+			    	<ul class="sidebar-menu" data-widget="tree">
+			    		<li class="header">Menu</li>
+			    		<li class="treeview" v-for="menu in menus">
+			    			<a href="#">
+			    				<i :class="menu.icon"></i> <span  v-cloak>{{menu.menuName}}</span>
+			    				<span class="pull-right-container">
+			    					<i class="fa fa-angle-left pull-right"></i>
+			    				</span>
+			    			</a>
+			    			<ul class="treeview-menu">
+			    				<li v-for="(child,index) in menu.subMenus" @click="toPage($event,index)" :data-url="child.url"><a><i class="fa fa-circle-o"></i>{{child.menuName}}</a>
+			    				</li>
+			    			</ul>
+			    		</li>
+			    	</ul>
+			    	<!-- /.sidebar-menu -->
 			    </section>
-			    <!-- /.sidebar -->
-			  </aside>
-		<script src="../lib/vue/vue.min.js"></script>
-	    <script src="../lib/jquery/jquery.min.js"></script>
-		<script src="../lib/bootstrap/js/bootstrap.min.js"></script>
-		<script src="../lib/AdminLTE/js/adminlte.min.js"></script>
-		<script src="../../lib/alert/sweetalert.min.js"></script>
-		<script type="text/javascript" src="../js/common.js"></script>
-		<script src="../lib/loading/loading.js"></script>
-		<script src="../js/index.js"></script>		
-			 	
-			   <iframe src="welcome.html" frameborder="0" scrolling="no" id="iframe" class="iframe">
-			    </iframe>
+		    <!-- /.sidebar -->
+		    </aside>
+			
+			<div class="content-wrapper">
+				
+			</div>	
 					  
     	</div>
-
+	
+	<script src="../lib/vue/vue.min.js"></script>
+    <script src="../lib/jquery/jquery.min.js"></script>
+	<script src="../lib/bootstrap/js/bootstrap.min.js"></script>
+	<script src="../lib/AdminLTE/js/adminlte.min.js"></script>
+	<script src="../../lib/alert/sweetalert.min.js"></script>
+	<script src="../lib/jquery-validation/jquery.validate.min.js"></script>
+	<script src="../lib/jquery-validation/localization/messages_zh.min.js"></script>
+	<script type="text/javascript" src="../js/global.js"></script>
+	<script src="../lib/loading/loading.js"></script>
+	<script src="../js/index.js"></script>		
     </body>
 
     

@@ -37,6 +37,7 @@ if ($.validator){
 }
 
 
+//检查登录状态
 $.ajax({
     url:config.server+"/checkLoginState",
     success:function(res){
@@ -47,3 +48,12 @@ $.ajax({
     }
 });
 
+
+function loadUrl(url){
+    $(".content-wrapper").load(url);
+}
+
+function reload(){
+    $(".modal-backdrop").remove();
+    $(".content-wrapper").load($(".treeview-menu > li.active").attr("data-url"));
+}

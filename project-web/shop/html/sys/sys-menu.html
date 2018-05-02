@@ -1,152 +1,138 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>用户管理</title>
-         <link rel="stylesheet" type="text/css" href="../../lib/bootstrap/css/bootstrap.min.css"/>
-	    <link rel="stylesheet" type="text/css" href="../../lib/font-awesome/css/font-awesome.min.css"/>
-	    <link rel="stylesheet" type="text/css" href="../../lib/AdminLTE/css/AdminLTE.min.css"/>
-      <link rel="stylesheet" type="text/css" href="../../lib/loading/loading.css">
-      <link rel="stylesheet" type="text/css" href="../../css/sys-admin/sys-admin.css">
-    </head>
-    <body>
-      
-        <div class="wrapper">
-                    <section class="content-header">
-                      <h1>{{child}}</h1>
-                      <ol class="breadcrumb">
-                        <li><a href="#"><i class="fa fa-dashboard"></i>首页</a></li>
-                        <li><a href="#">{{parent}}</a></li>
-                        <li class="active">{{child}}</li>
-                      </ol>
-                    </section>
-            <div class="content">
-                
-                <div class="box">
-                     <div class="box-header with-border">
-                        <button type="button" class="btn btn-primary btn-flat" id="add" @click="add"><i class="fa fa-plus"></i>add</button>
-                     </div>
-                    <div class="box-body">
-                      <div class="box-body table-responsive no-padding">
-                          <table class="table table-hover">
-                            <thead>
-                              <th>菜单名称</th>
-                              <th>url</th>
-                              <th>菜单图标</th>
-                              <th>排序号</th>
-                              <th>创建时间</th>
-                              <th>操作</th>
-                            </thead>
+<head>
+  <title>用户管理</title>
+  <link rel="stylesheet" type="text/css" href="../../css/sys/sys-menu.css">
+  <body>
 
-                            <tbody>
-                              <template v-for="menu in menus">
-                                <tr :id="menu.id">
-                                  <td><i class="fa fa-caret-right foldBtn" @click="openOrClose($event.currentTarget)"></i>{{menu.menuName}}</td>
-                                  <td>{{menu.url}}</td>
-                                  <td>{{menu.icon}}<i :class="menu.icon" class="iconShow"></i></td>
-                                  <td>{{menu.sortNum}}</td>
-                                  <td>{{menu.createTime}}</td>
-                                  <td>
-                                      <button type="button" class="btn btn-xs btn-primary btn-flat" @click="edit($event.currentTarget)"><i class="fa fa-edit"></i> edit</button>
-                                      <button type="button" class="btn btn-xs btn-danger btn-flat" @click="del($event.currentTarget)"><i class="fa fa-trash"></i> delete</button>
-                                  </td>
-                                </tr>
-                                 <template v-for="subMenu in menu.subMenus">
-                                  <tr :pId="subMenu.parentId" :id="subMenu.id" style="display: none" >
-                                    <td class="firstRow">{{subMenu.menuName}}</td>
-                                    <td>{{subMenu.url}}</td>
-                                    <td>{{subMenu.icon}}</td>
-                                    <td>{{subMenu.sortNum}}</td>
-                                    <td>{{subMenu.createTime}}</td>
-                                      <td>
-                                          <button type="button" class="btn btn-xs btn-primary btn-flat" @click="edit($event.currentTarget)"><i class="fa fa-edit"></i> edit</button>
-                                          <button type="button" class="btn btn-xs btn-danger btn-flat" @click="del($event.currentTarget)"><i class="fa fa-trash"></i> delete</button>
-                                      </td>
-                                  </tr>
-                                  </template>
-                              </template>
-                            </tbody>
-                          </table>
-                      </div>
+    <section class="content-header">
+      <h1>{{child}}</h1>
+      <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i>首页</a></li>
+        <li><a href="#">{{parent}}</a></li>
+        <li class="active">{{child}}</li>
+      </ol>
+    </section>
+    
+    <div class="content">
+      <div class="box">
+       <div class="box-header with-border">
+        <button type="button" class="btn btn-primary btn-flat" id="add" @click="add"><i class="fa fa-plus foldBtn"></i>add</button>
+      </div>
+      <div class="box-body">
+        <div class="box-body table-responsive no-padding">
+          <table class="table table-hover">
+            <thead>
+              <th width="15%">菜单名称</th>
+              <th width="15%">url</th>
+              <th width="15%">菜单图标</th>
+              <th width="15%">排序号</th>
+              <th width="15%">创建时间</th>
+              <th width="15%">操作</th>
+            </thead>
+
+            <tbody>
+              <template v-for="menu in menus">
+                <tr :id="menu.id">
+                  <td><i class="fa fa-caret-right icon-margin-right" @click="openOrClose($event.currentTarget)"></i>{{menu.menuName}}</td>
+                  <td>{{menu.url}}</td>
+                  <td>{{menu.icon}}<i :class="menu.icon" class="iconShow"></i></td>
+                  <td>{{menu.sortNum}}</td>
+                  <td>{{menu.createTime}}</td>
+                  <td>
+                    <button type="button" class="btn btn-xs btn-primary btn-flat" @click="edit($event.currentTarget)"><i class="fa fa-edit"></i> edit</button>
+                    <button type="button" class="btn btn-xs btn-danger btn-flat" @click="del($event.currentTarget)"><i class="fa fa-trash"></i> delete</button>
+                  </td>
+                </tr>
+                <template v-for="subMenu in menu.subMenus">
+                  <tr :pId="subMenu.parentId" :id="subMenu.id" style="display: none" >
+                    <td class="firstRow">{{subMenu.menuName}}</td>
+                    <td>{{subMenu.url}}</td>
+                    <td>{{subMenu.icon}}</td>
+                    <td>{{subMenu.sortNum}}</td>
+                    <td>{{subMenu.createTime}}</td>
+                    <td>
+                      <button type="button" class="btn btn-xs btn-primary btn-flat" @click="edit($event.currentTarget)"><i class="fa fa-edit"></i> edit</button>
+                      <button type="button" class="btn btn-xs btn-danger btn-flat" @click="del($event.currentTarget)"><i class="fa fa-trash"></i> delete</button>
+                    </td>
+                  </tr>
+                </template>
+              </template>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!--添加或者编辑-->
+  <div class="modal fade in" id="addOrUpdateModel" style="display: none; padding-right: 17px;">
+    <div class="modal-dialog">
+      <div class="modal-content">                  
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span></button>
+            <h4 class="modal-title">添加菜单</h4>
+          </div>
+          <form id="addOrUpdateForm">
+            <div class="modal-body form-horizontal">
+
+              <input type="hidden" name="id" :value="id">
+              <div class="box-body">
+                <div class="form-group">
+                  <label class="col-sm-2 control-label">上级菜单</label>
+                  <div class="col-sm-10">
+                    <select class="form-control" id="parentId" name="parentId" v-model="parentId">
+                      <option value="0">设为一级菜单</option>
+                      <option v-for="menu in menus" :value="menu.id">{{menu.menuName}}</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label class="col-sm-2 control-label">菜单名称</label>
+
+                  <div class="col-sm-10">
+                    <input type="text" class="form-control" name="menuName" placeholder="菜单名称" id="menuName" v-model="menuName">
+                  </div>
+                </div>
+                <div class="form-group" v-show="parentId!=0">
+                  <label class="col-sm-2 control-label">菜单路径</label>
+                  <div class="col-sm-10">
+                    <input type="text" class="form-control" name="url" placeholder="菜单路径" id="url" v-model="url">
+                  </div>
+                </div>
+                <div class="form-group" v-show="parentId==0">
+                  <label class="col-sm-2 control-label">菜单图标</label>
+                  <div class="col-sm-10">
+                    <div class="input-group">
+                      <input type="text" class="form-control" name="icon" placeholder="例如:fa fa-adjust" v-model="icon">
+                      <span class="input-group-addon"><i :class="icon"></i></span>
                     </div>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-sm-2 control-label">排序号</label>
+                  <div class="col-sm-10">
+                    <input type="number" class="form-control" name="sortNum" placeholder="排序号" v-model="sortNum">
+                  </div>
+
+                </div>
               </div>
             </div>
-
-
-        <!--添加或者编辑-->
-        <div class="modal fade in" id="addOrUpdateModel" style="display: none; padding-right: 17px;">
-            <div class="modal-dialog">
-                <div class="modal-content">                  
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">×</span></button>
-                        <h4 class="modal-title">添加菜单</h4>
-                    </div>
-                    <form id="addOrUpdateForm">
-                    <div class="modal-body form-horizontal">
-
-                        <input type="hidden" name="id" :value="id">
-                        <div class="box-body">
-                            <div class="form-group">
-                              <label class="col-sm-2 control-label">上级菜单</label>
-                              <div class="col-sm-10">
-                                <select class="form-control" id="parentId" name="parentId" v-model="parentId">
-                                  <option value="0">设为一级菜单</option>
-                                  <option v-for="menu in menus" :value="menu.id">{{menu.menuName}}</option>
-                                </select>
-                               </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label class="col-sm-2 control-label">菜单名称</label>
-
-                                <div class="col-sm-10">
-                                    <input type="text" class="form-control" name="menuName" placeholder="菜单名称" id="menuName" v-model="menuName">
-                                </div>
-                            </div>
-                            <div class="form-group" v-show="parentId!=0">
-                                <label class="col-sm-2 control-label">菜单路径</label>
-                                <div class="col-sm-10">
-                                    <input type="text" class="form-control" name="url" placeholder="菜单路径" id="url" v-model="url">
-                                </div>
-                            </div>
-                            <div class="form-group" v-show="parentId==0">
-                                <label class="col-sm-2 control-label">菜单图标</label>
-                                <div class="col-sm-10">
-                                    <div class="input-group">
-                                        <input type="text" class="form-control" name="icon" placeholder="例如:fa fa-adjust" v-model="icon">
-                                        <span class="input-group-addon"><i :class="icon"></i></span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-sm-2 control-label">排序号</label>
-                                <div class="col-sm-10">
-                                    <input type="number" class="form-control" name="sortNum" placeholder="排序号" v-model="sortNum">
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default pull-left" data-dismiss="modal">关闭</button>
-                        <button type="submit" class="btn btn-primary">保存</button>
-                    </div>
-                    </form>
-                </div>
-                <!-- /.modal-content -->
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default pull-left" data-dismiss="modal">关闭</button>
+              <button type="submit" class="btn btn-primary">保存</button>
             </div>
-            <!-- /.modal-dialog -->
-        </div>    
+          </form>
         </div>
-       
-    </body>
-    <script type="text/javascript" src="../../lib/jquery/jquery.min.js"></script>
-    <script type="text/javascript" src="../../lib/vue/vue.min.js"></script>
-    <script src="../../lib/jquery-validation/jquery.validate.min.js"></script>
-    <script src="../../lib/bootstrap/js/bootstrap.min.js"></script>
-    <script src="../../lib/alert/sweetalert.min.js"></script>
-    <script type="text/javascript" src="../../js/common.js"></script>
-    <script type="text/javascript" src="../../lib/loading/loading.js"></script>
-    <script type="text/javascript" src="../../js/sys/sys-menu.js"></script>
+        <!-- /.modal-content -->
+      </div>
+      <!-- /.modal-dialog -->
+    </div>    
+
+  </body>
+  <script type="text/javascript" src="../../js/sys/sys-menu.js"></script>
   
-</html>
+  </html>

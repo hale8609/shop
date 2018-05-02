@@ -7,7 +7,7 @@
 	};
 
     var vue = new Vue({
-        el: '.wrapper',
+        el: '.content-wrapper',
         data: {
             menus: null,
             child: parent.$("li .active")[0].innerText,
@@ -66,7 +66,7 @@
                             success:function(res){
                                 if (res.code=='0000'){
                                     parent.swal(res.msg,'','success');
-                                    location.reload();
+                                    $(_this).parents('tr').remove();
                                 }else {
                                     swal(res.msg,'','warning');
                                 }
@@ -105,9 +105,9 @@
                 data: $("#addOrUpdateForm").serialize(),
                 success:function(res){
                     if (res.code == '0000'){
-                        window.parent.swal("保存成功！", "", "success");
                         $('#addOrUpdateModel').modal('hide');
-                        location.reload();
+                        swal("保存成功！", "", "success");
+                        reload();
                     }else {
                         console.log(res.msg);
                     }

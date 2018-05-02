@@ -14,13 +14,14 @@ $(function(){
     },
     methods:{
     	toPage:function(event,index){
-    		//循环取消所有侧边栏li标签的点中样式
-    		$("#content").find('.main-sidebar').find('li').removeClass('active');
-    		//给当前点击的li标签添加选中样式
-	　　　　$(event.currentTarget).addClass('active');
-			$("#iframe").attr("src",$(event.currentTarget).attr("data-url"));
-			setIframeHeight($("#iframe"));
-             
+    		//取消选中标签
+			$(".treeview-menu > li").removeClass("active");
+			//添加选中标签
+			$(event.target).parent("li").addClass("active");
+			//清除内容
+			$(".content-wrapper").empty();
+			//加载内容
+			$(".content-wrapper").load($(event.target).parent("li").attr("data-url"));
     	}
     }
 });
@@ -50,13 +51,5 @@ $(".sidebar-toggle").click(function() {
 	}
 	
 });
-
-function setIframeHeight() {
-	$(iframe).css("width",$(document.body).width()-$(".main-sidebar").width());
-	$(iframe).css("height",$(".main-sidebar").height());
-}
-//设置iframe的高度
-
-setIframeHeight();
 
 });		
