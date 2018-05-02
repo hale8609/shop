@@ -24,7 +24,7 @@ public class SysRoleService {
         return sysRoleMapper.selectByPrimaryKey(id);
     }
 
-    @Cacheable(key = "selectAll")
+    @Cacheable
     public List<SysRole> selectAll(){
         SysRoleExample example = new SysRoleExample();
         example.setOrderByClause("create_time");

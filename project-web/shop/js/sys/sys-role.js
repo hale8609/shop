@@ -6,14 +6,14 @@ var action = {
 };
 
 var vue = new Vue({
-    el: '.wrapper',
+    el: '.content-wrapper',
     data: {
         child: parent.$("li .active")[0].innerText,
         parent: parent.$(".menu-open").find('span')[0].innerText,
-        roles:null;
-        id:null;
-        roleName:null;
-        description:null;
+        roles:null,
+        id:null,
+        roleName:null,
+        description:null
     },
     methods:{
         add(){
@@ -59,6 +59,7 @@ var vue = new Vue({
 $.ajax({
 	url: action.getAllRoles,
 	success:function(res){
+        console.log(res);
 		if (res.code =='0000'){
 			vue.roles = res.result;
 		}

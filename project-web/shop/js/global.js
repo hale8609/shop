@@ -12,7 +12,8 @@ $.ajaxSetup({
     complete : function(request){
         //ajax完成显示loading并且判断登录状态，如果登录失效返回登录页
         maskHide();
-        if (request.responseJSON.code == '0002'){
+        console.log("reques")
+        if (request.responseJSON && request.responseJSON.code == '0002'){
             parent.window.location.href="/html/login.html";
         }
     }
